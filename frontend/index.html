@@ -1,65 +1,179 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Projeto da disciplina ARA0062 — Equipe Delta.">
-    <title>Escola Delta de Idiomas — Equipe Delta</title>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Projeto da disciplina ARA0062 — Equipe Vinland. Site do Supermercado Bom Preço.">
+<title>Supermercado Bom Preço — Equipe Vinland</title>
 
-    <!--
-      O CSS ainda está vazio: ele começa a ser escrito na aula 04.
-      A ligação já fica pronta aqui para ninguém ter de lembrar depois.
-    -->
-    <link rel="stylesheet" href="css/estilo.css">
-  </head>
+<!--
+O CSS ainda está vazio: ele começa a ser escrito na aula 04.
+A ligação já fica pronta aqui para ninguém ter de lembrar depois.......
+-->
+<link rel="stylesheet" href="css/estilo.css">
+</head>
 
-  <body>
+<body>
 
-    <header>
-      <h1>Escola Delta de Idiomas</h1>
-      <p>Projeto da equipe Delta — ARA0062</p>
-    </header>
+<header>
+<h1>Supermercado Bom Preço</h1>
+<p>Projeto da equipe Vinland — ARA0062</p>
+</header>
 
-    <nav>
-      <ul>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#contato">Contato</a></li>
-      </ul>
-    </nav>
+<nav>
+<ul>
+<li><a href="#sobre">Sobre</a></li>
+<li><a href="#ofertas">Ofertas da semana</a></li>
+<li><a href="#lista-compras">Lista de compras</a></li>
+<li><a href="#delivery">Peça já</a></li>
+<li><a href="#contato">Contato</a></li>
+</ul>
+</nav>
 
-    <main>
-      <section id="sobre">
-        <h2>Sobre o projeto</h2>
-        <p>
-          Troque este conteúdo pelo do projeto de vocês. O que não muda é a
-          estrutura: este arquivo é a raiz do <code>frontend/</code>, com
-          <code>css/</code>, <code>js/</code> e <code>img/</code> ao lado dele.
-          Todo PHP mora no <code>backend/</code>, um nível acima.
-        </p>
-      </section>
+<main>
+<section id="sobre">
+<h2>Sobre o projeto</h2>
+<p>
+O Supermercado Bom Preço é uma vitrine digital pensada para quem
+busca praticidade e economia: aqui o cliente confere o catálogo
+semanal de ofertas, monta a lista de compras com o total calculado
+automaticamente e faz o pedido de delivery, tudo em um só lugar.
+O que não muda é a estrutura: este arquivo é a raiz do
+<code>frontend/</code>, com <code>css/</code>, <code>js/</code> e
+<code>img/</code> ao lado dele. Todo PHP mora no
+<code>backend/</code>, um nível acima.
+</p>
+</section>
 
-      <section id="contato">
-        <h2>Contato</h2>
-        <p>O formulário de contato entra aqui.</p>
+<section id="ofertas">
+<h2>Ofertas da semana</h2>
+<p>
+Catálogo com os produtos em promoção e seus valores. Por enquanto
+a lista é fixa; futuramente pode vir do backend.
+</p>
 
-        <!--
-          No ciclo 8, o action deste formulário aponta para o backend:
-          <form action="../backend/processa-contato.php" method="post">
-          Os dois pontos sobem uma pasta (saem do frontend) antes de entrar
-          no backend. Enquanto não há PHP, o action fica em "#".
-        -->
-      </section>
-    </main>
+<ul id="lista-ofertas">
+<li>
+<span class="produto">Arroz 5kg</span>
+<span class="preco">R$ 24,90</span>
+</li>
+<li>
+<span class="produto">Feijão carioca 1kg</span>
+<span class="preco">R$ 8,49</span>
+</li>
+<li>
+<span class="produto">Óleo de soja 900ml</span>
+<span class="preco">R$ 7,29</span>
+</li>
+<li>
+<span class="produto">Leite integral 1L</span>
+<span class="preco">R$ 5,19</span>
+</li>
+<li>
+<span class="produto">Café torrado 500g</span>
+<span class="preco">R$ 14,90</span>
+</li>
+<li>
+<span class="produto">Açúcar cristal 1kg</span>
+<span class="preco">R$ 5,79</span>
+</li>
+</ul>
 
-    <footer>
-      <p>Equipe Delta &middot; 2026 &middot; ARA0062 &middot; Newton Paiva</p>
-    </footer>
+<!--
+No ciclo 6, cada botão "adicionar" aqui chama uma função do
+js/script.js que soma o preço do item ao total da lista de
+compras (seção #lista-compras). Enquanto o JS não existe,
+os itens ficam apenas exibidos, sem interação.
+-->
+</section>
 
-    <!--
-      O JavaScript também está vazio por enquanto — ele entra no ciclo 6.
-      defer faz o script rodar depois que a página terminou de carregar.
-    -->
-    <script src="js/script.js" defer></script>
+<section id="lista-compras">
+<h2>Monte sua lista de compras</h2>
+<p>
+Ferramenta para o cliente escolher os itens do catálogo acima e
+acompanhar o total da compra em tempo real.
+</p>
 
-  </body>
+<ul id="itens-selecionados">
+<li>Nenhum item adicionado ainda.</li>
+</ul>
+
+<p id="total-compra">Total: R$ 0,00</p>
+
+<!--
+O cálculo do total (somar/remover itens, atualizar o valor em
+#total-compra) entra no ciclo 6, junto com o restante do JS.
+A estrutura HTML já fica pronta para não precisar mexer depois.
+-->
+</section>
+
+<section id="delivery">
+<h2>Peça seu delivery</h2>
+<p>Preencha os dados abaixo para receber suas compras em casa.</p>
+
+<form id="form-delivery">
+<label for="nome-cliente">Nome completo</label>
+<input type="text" id="nome-cliente" name="nome-cliente" required>
+
+<label for="endereco-entrega">Endereço de entrega</label>
+<input type="text" id="endereco-entrega" name="endereco-entrega" required>
+
+<label for="telefone-cliente">Telefone</label>
+<input type="tel" id="telefone-cliente" name="telefone-cliente" required>
+
+<label for="forma-pagamento">Forma de pagamento</label>
+<select id="forma-pagamento" name="forma-pagamento">
+<option value="pix">Pix</option>
+<option value="cartao">Cartão na entrega</option>
+<option value="dinheiro">Dinheiro</option>
+</select>
+
+<button type="submit">Confirmar pedido</button>
+</form>
+
+<!--
+No ciclo 8, o action deste formulário aponta para o backend:
+<form action="../backend/processa-pedido.php" method="post">
+Os dois pontos sobem uma pasta (saem do frontend) antes de entrar
+no backend. Enquanto não há PHP, o action fica em "#".
+-->
+</section>
+
+<section id="contato">
+<h2>Contato</h2>
+<p>Dúvidas, sugestões ou reclamações? Fale com a gente.</p>
+
+<form id="form-contato">
+<label for="nome-contato">Nome</label>
+<input type="text" id="nome-contato" name="nome-contato" required>
+
+<label for="email-contato">E-mail</label>
+<input type="email" id="email-contato" name="email-contato" required>
+
+<label for="mensagem-contato">Mensagem</label>
+<textarea id="mensagem-contato" name="mensagem-contato" rows="4" required></textarea>
+
+<button type="submit">Enviar mensagem</button>
+</form>
+
+<!--
+No ciclo 8, o action deste formulário aponta para o backend:
+<form action="../backend/processa-contato.php" method="post">
+Os dois pontos sobem uma pasta (saem do frontend) antes de entrar
+no backend. Enquanto não há PHP, o action fica em "#"..
+-->
+</section>
+</main>
+
+<footer>
+<p>Equipe Vinland &middot; 2026 &middot; ARA0062 &middot; Newton Paiva</p>
+</footer>
+
+<!--
+O JavaScript também está vazio por enquanto — ele entra no ciclo 6.
+defer faz o script rodar depois que a página terminou de carregar.
+-->
+<script src="js/script.js" defer></script>
+
+</body>
 </html>
