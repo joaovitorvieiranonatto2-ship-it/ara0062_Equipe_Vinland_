@@ -5,29 +5,26 @@
 
 
 :root {
-   /* cor de frente e cor de fundo, sempre em par (aula 05) */
-   --principal: #88005b;
-   /* cabeçalho, títulos, links */
+   --principal: #1f6f5c;
+   /* cabeçalho, títulos, botão principal */
+   --principal-escuro: #14493d;
+   /* o hover do botão principal          */
    --sobre-principal: #ffffff;
-   /* texto EM CIMA da cor principal */
-   --apoio: #053e60;
-   /* botão, destaques */
-   --alerta: #ff1a00;
-   /* hover, avisos */
+   /* texto em cima da cor principal      */
 
-   --fundo: #f4eff2;
-   /* fundo da página */
+   --apoio: #b3541e;
+   --realce: #dfa03f;
+   /* o contorno do foco                  */
+
+   --fundo: #e8f1ee;
    --superficie: #ffffff;
-   /* fundo dos "cartões" (as sections) */
-   --texto: #231f20;
-   --texto-claro: #6e6a70;
-   /* legenda, rodapé */
-
-   --linha: #e2d8de;
-   /* bordas finas, separadores */
-
+   --texto: #222222;
+   --texto-fraco: #5a5a5a;
+   --linha: #cfe0da;
    --fonte: "Poppins", Arial, Helvetica, sans-serif;
+
 }
+
 
 
 *,
@@ -39,15 +36,15 @@
 
 
 body {
-font-family: var(--fonte);
-font-size: 1rem;
-line-height: 1.6;
-color: var(--texto);
-background-color: var(--fundo);
+   font-family: var(--fonte);
+   font-size: 1rem;
+   line-height: 1.6;
+   color: var(--texto);
+   background-color: var(--fundo);
 
-max-width: 860px;
-margin: 0 auto;
-padding: 0 20px 40px;
+   max-width: 860px;
+   margin: 0 auto;
+   padding: 0 20px 40px;
 }
 
 h1,
@@ -91,7 +88,7 @@ footer {
    padding-top: 16px;
    border-top: 1px solid var(--linha);
    text-align: center;
-   color: var(--texto-claro);
+   color: var(--texto-fraco);
    font-size: 0.875rem;
    /* 14px */
 }
@@ -149,23 +146,23 @@ section {
 
 
 
-#lista-ofertas {
+lista-ofertas {
    list-style: none;
    padding: 0;
 }
 
-#lista-ofertas li {
+lista-ofertas li {
    display: flex;
    justify-content: space-between;
    padding: 10px 0;
    border-bottom: 1px solid var(--linha);
 }
 
-#lista-ofertas li:last-child {
+lista-ofertas li:last-child {
    border-bottom: none;
 }
 
-#lista-ofertas li:nth-child(even) {
+lista-ofertas li:nth-child(even) {
    background-color: var(--fundo);
 }
 
@@ -181,18 +178,18 @@ section {
 
 
 
-#itens-selecionados {
+itens-selecionados {
    list-style: none;
    padding: 0;
    min-height: 40px;
 }
 
-#itens-selecionados li {
+itens-selecionados li {
    padding: 8px 0;
    border-bottom: 1px dashed var(--linha);
 }
 
-#total-compra {
+total-compra {
    font-weight: 600;
    font-size: 1.125rem;
    /* 18px */
@@ -258,4 +255,3 @@ button {
 button:hover {
    background-color: var(--principal);
 }
-
