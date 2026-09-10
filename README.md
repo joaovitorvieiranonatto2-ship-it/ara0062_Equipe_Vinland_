@@ -82,6 +82,7 @@ Os dois pontos (`..`) sobem uma pasta: saem do `frontend/` antes de entrar no
 ## Quem fez o quê
 
 | Integrante | Parte da folha de estilo |
+|---|---|
 | Bernardo Augusto Gontijo Dias | Estiliza cabeçalho, rodapé e cor padrão dos links |
 | Henrique Toffalini  | Cabeçalho e Variáveis CSS |
 | Juliano Morais | Define estilos base (reset, body e títulos) |
