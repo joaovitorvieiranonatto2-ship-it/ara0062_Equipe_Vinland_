@@ -2,28 +2,33 @@
    css/estilo.css — Supermercado Bom Preço — Equipe Vinland — ARA0062
    ========================================================================== */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+/* ==========================================================================
+   1. Cabeçalho e Variáveis CSS - Henrique Del Rio Toffalini
+   ========================================================================== */
 
-
-:root {
+   :root {
    --principal: #1f6f5c;
    /* cabeçalho, títulos, botão principal */
+   
    --principal-escuro: #14493d;
-   /* o hover do botão principal          */
+   /* o hover do botão principal .         */
+   
    --sobre-principal: #ffffff;
    /* texto em cima da cor principal      */
 
+   
    --apoio: #b3541e;
    --realce: #dfa03f;
-   /* o contorno do foco                  */
+   /* o contorno do foco.                 */
 
-   --fundo: #e8f1ee;
+   --fundo: #e8f1ee;.
    --superficie: #ffffff;
    --texto: #222222;
    --texto-fraco: #5a5a5a;
    --linha: #cfe0da;
    --fonte: "Poppins", Arial, Helvetica, sans-serif;
 
-}
+   }
 
 
 
