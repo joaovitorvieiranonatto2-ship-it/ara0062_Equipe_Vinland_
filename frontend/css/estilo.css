@@ -4,3 +4,45 @@
    Ele já está ligado ao index.html pela linha
    <link rel="stylesheet" href="css/estilo.css">
    ========================================================================== */
+
+
+header {
+   background-color: var(--principal);
+   color: var(--sobre-principal);
+   text-align: center;
+   padding: 24px 16px;
+   border-radius: 6px;
+   margin-bottom: 24px;
+}
+
+header h1 {
+   color: var(--sobre-principal);
+}
+
+header p {
+   color: var(--sobre-principal);
+   font-style: italic;
+   opacity: 0.9;
+}
+
+footer {
+   margin-top: 40px;
+   padding-top: 16px;
+   border-top: 1px solid var(--linha);
+   text-align: center;
+   color: var(--texto-claro);
+   font-size: 0.875rem;
+   /* 14px */
+}
+
+
+a {
+   color: var(--principal);
+   text-decoration: none;
+}
+
+a:hover {
+   /* enquanto o mouse está em cima */
+   color: var(--alerta);
+   text-decoration: underline;
+}
