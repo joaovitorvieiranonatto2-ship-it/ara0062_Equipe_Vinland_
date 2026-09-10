@@ -1,10 +1,4 @@
 /* ==========================================================================
-   ARA0062 — folha de estilos do projeto
-   Este arquivo começa vazio de propósito: o CSS entra a partir da aula 04.
-   Ele já está ligado ao index.html pela linha
-   <link rel="stylesheet" href="css/estilo.css">
-   ========================================================================== */
- /* ==========================================================================
    css/estilo.css — Supermercado Bom Preço — Equipe Vinland — ARA0062
    ========================================================================== */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
@@ -26,6 +20,40 @@
 
   --fonte: "Poppins", Arial, Helvetica, sans-serif;
 }
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+
+
+body {
+  font-family: var(--fonte);
+  font-size: 1rem;      
+  line-height: 1.6;
+  color: var(--texto);
+  background-color: var(--fundo);
+
+  max-width: 860px;     
+  margin: 0 auto;        
+  padding: 0 20px 40px;
+}
+
+h1, h2, h3 {
+  color: var(--principal);
+}
+
+h1 {
+  font-size: 2rem;  }    
+
+h2 {
+  font-size: 1.375rem;   
+  margin-top: 0;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid var(--principal);
+}
+
+
 header {
    background-color: var(--principal);
    color: var(--sobre-principal);
@@ -65,4 +93,93 @@ a:hover {
    /* enquanto o mouse está em cima */
    color: var(--alerta);
    text-decoration: underline;
+}
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  text-align: center;
+}
+
+nav ul > li {
+  display: inline-block;
+  margin: 0 4px;
+}
+
+nav a {
+  display: block;         
+  font-weight: 600;
+  padding: 10px 14px;
+  border-radius: 4px;
+}
+
+nav a:hover {
+  background-color: var(--superficie);
+  text-decoration: none;
+}
+
+
+
+
+section {
+  background-color: var(--superficie);
+  border: 1px solid var(--linha);
+  border-radius: 6px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);  /* sombra sutil, só descola do fundo */
+}
+
+
+
+
+
+#lista-ofertas {
+  list-style: none;
+  padding: 0;
+}
+
+#lista-ofertas li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--linha);
+}
+
+#lista-ofertas li:last-child {
+  border-bottom: none;
+}
+
+#lista-ofertas li:nth-child(even) {
+  background-color: var(--fundo);
+}
+
+.produto {
+  color: var(--texto);
+}
+
+.preco {
+  color: var(--principal);
+  font-weight: 600;
+}
+
+
+
+
+#itens-selecionados {
+  list-style: none;
+  padding: 0;
+  min-height: 40px;
+}
+
+#itens-selecionados li {
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--linha);
+}
+
+#total-compra {
+  font-weight: 600;
+  font-size: 1.125rem;   /* 18px */
+  text-align: right;
+  color: var(--apoio);
 }
