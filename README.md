@@ -78,3 +78,15 @@ Os dois pontos (`..`) sobem uma pasta: saem do `frontend/` antes de entrar no
 - [ ] Ciclos 4 e 5 — `frontend/css/`: identidade visual, layout e responsividade
 - [ ] Ciclos 6 e 7 — `frontend/js/`: interação, validação e dados via JSON
 - [ ] Ciclos 8 a 10 — `backend/`: formulário que grava e lista do banco
+
+## Quem fez o quê
+
+| Integrante | Parte da folha de estilo |
+| Bernardo Augusto Gontijo Dias | Estiliza cabeçalho, rodapé e cor padrão dos links |
+| Henrique Toffalini  | Cabeçalho e Variáveis CSS |
+| Juliano Morais | Define estilos base (reset, body e títulos) |
+| João Vítor Vieira Nonato | Estiliza o layout base das sections e a lista de ofertas |
+| Isaías Daniel de Oliveira Lopes | Estiliza os formulários  |
+
+> Esta tabela é do estado atual. Quando vocês fizerem o laboratório de hoje na
+> folha da equipe, acrescentem quem cuidou de cada parte do espaçamento.
