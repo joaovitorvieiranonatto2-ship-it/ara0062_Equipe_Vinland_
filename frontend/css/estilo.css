@@ -29,6 +29,7 @@
    --fonte: "Poppins", Arial, Helvetica, sans-serif;
 }
 
+
 *,
 *::before,
 *::after {
@@ -65,7 +66,6 @@ h2 {
    padding-bottom: 0.25rem;
    border-bottom: 2px solid var(--principal);
 }
-
 
 header {
    background-color: var(--principal);
@@ -258,3 +258,4 @@ button {
 button:hover {
    background-color: var(--principal);
 }
+
