@@ -1,0 +1,24 @@
+:root {
+   /* cor de frente e cor de fundo, sempre em par (aula 05) */
+   --principal: #887400;
+   /* cabeçalho, títulos, links */
+   --sobre-principal: #ffffff;
+   /* texto EM CIMA da cor principal */
+   --apoio: #056005;
+   /* botão, destaques */
+   --alerta: #ff1a00;
+   /* hover, avisos */
+
+   --fundo: #f4eff2;
+   /* fundo da página */
+   --superficie: #ffffff;
+   /* fundo dos "cartões" (as sections) */
+   --texto: #231f20;
+   --texto-claro: #6e6a70;
+   /* legenda, rodapé */
+
+   --linha: #e2d8de;
+   /* bordas finas, separadores */
+
+   --fonte: "Poppins", Arial, Helvetica, sans-serif;
+}
