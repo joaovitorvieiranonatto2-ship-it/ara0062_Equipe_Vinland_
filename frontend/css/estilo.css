@@ -38,7 +38,9 @@
    box-sizing: border-box;
 }
 
-
+/* ==========================================================================
+   2. Define estilos base (reset, body e títulos) - Juliano Morais
+   ========================================================================== */
 
 body {
    font-family: var(--fonte);
@@ -69,6 +71,9 @@ h2 {
    border-bottom: 2px solid var(--principal);
 }
 
+/* ==========================================================================
+   3. Estiliza cabeçalho, rodapé e cor padrão dos links - Bernardo Augusto Gontijo Dias
+   ========================================================================== */
 header {
    background-color: var(--principal);
    color: var(--sobre-principal);
@@ -110,6 +115,9 @@ a:hover {
    text-decoration: underline;
 }
 
+/* ==========================================================================
+   4. Estiliza o layout base das sections e a lista de ofertas - João Vítor Vieira Nonato
+   ========================================================================== */
 nav ul {
    list-style: none;
    padding: 0;
@@ -202,7 +210,9 @@ total-compra {
    color: var(--apoio);
 }
 
-
+/* ==========================================================================
+   5. Estiliza os formulários - Isaías Daniel de Oliveira Lopes
+   ========================================================================== */
 form {
    display: flex;
    flex-direction: column;
