@@ -1,18 +1,80 @@
+/* ==========================================================================
+   tema-noite.css — o segundo tema do projeto
+   ARA0062 · Equipe Vinland · Loja Vórtex Geek
+
+   Este arquivo tem UMA regra. Ele não conhece o menu, não sabe o que é uma
+   tabela e não desenha nada: só diz quais cores ocupam quais papéis.
+
+   Os CATORZE nomes de variável são os MESMOS do estilo.css, na mesma
+   ordem — só os valores mudam. Os valores abaixo são uma paleta escura
+   própria da equipe, criada do zero para este tema: nenhuma variável foi
+   copiada do estilo.css, e nenhum valor repete a paleta de exemplo da aula.
+
+   E ele NÃO conhece espaço: a escala --e-1 a --e-4 fica só no estilo.css.
+   Espaço não é identidade visual, é estrutura — um tema que mexesse nela
+   estaria redesenhando a página em vez de trocar a cara dela.
+
+   COMO LIGAR
+   A linha já está ativa no index.html:
+
+     <link rel="stylesheet" href="css/estilo.css">
+     <link rel="stylesheet" href="css/tema-noite.css">
+
+   Ela vem DEPOIS do estilo.css: mesmo seletor (:root), mesma especificidade,
+   ganha o último. É a cascata da aula 04.
+
+   TRÊS COISAS QUE UM TEMA ESCURO EXIGE
+
+   1. Fundo escuro não é preto puro. Aqui o fundo é um roxo-quase-preto
+      (#160f22), não #000000 — texto branco sobre preto absoluto cansa a
+      vista, e um quase-preto com cor mantém a marca presente.
+
+   2. A superfície é MAIS CLARA que o fundo, não mais escura. No tema claro
+      o cartão avança em direção ao branco; no escuro, em direção a um roxo
+      acinzentado. Nos dois casos é a superfície que se aproxima de quem
+      olha.
+
+   3. O hover CLAREIA em vez de escurecer, e o texto que fica em cima da cor
+      principal inverte: no tema claro ele é branco, aqui ele é quase preto.
+      É por isso que --sobre-principal existe como variável separada.
+
+   Contraste conferido com a fórmula de luminância relativa do WCAG 2.1:
+     --texto sobre --superficie ............ 14,3:1
+     --principal sobre --superficie ........ 10,8:1
+     --sobre-principal sobre --principal ... 11,5:1
+     --sobre-barra sobre --barra ........... 12,8:1
+     --apoio sobre --superficie ............ 8,1:1
+     --texto-fraco sobre --fundo ........... 8,2:1
+
+   Quem fez: Marina Souza Lima — paleta e conferência de contraste deste
+   tema escuro.
+   ========================================================================== */
 :root {
-   --principal: #1f6f5c;
-   /* cabeçalho, títulos, botão principal */
-   --principal-escuro: #14493d;
-   /* o hover do botão principal          */
-   --sobre-principal: #ffffff;
-   /* texto em cima da cor principal      */
+  /* tipografia — o tema não muda a fonte, só as cores. */
+  --fonte:      "Poppins", "Segoe UI", Arial, Helvetica, sans-serif;
 
-   --apoio: #b3541e;
-   --realce: #dfa03f;
-   /* o contorno do foco                  */
+  /* cores — os mesmos catorze nomes do estilo.css, na mesma ordem, com
+     valores próprios: um verde-água néon como cor principal do tema
+     escuro (não é dourado, não é o roxo do tema claro) */
+  --principal:        #5ee6d0;   /* o verde-água néon só funciona sobre escuro */
+  --principal-escuro: #8ff0e0;   /* no escuro, o hover CLAREIA                 */
+  --sobre-principal:  #0b1b1c;   /* aqui ele é quase preto                     */
 
-   --fundo: #e8f1ee;
-   --superficie: #ffffff;
-   --texto: #222222;
-   --texto-fraco: #5a5a5a;
-   --linha: #cfe0da;
+  --barra:            #0c0813;   /* mais escura que o fundo                    */
+  --sobre-barra:      #d8cbe6;
+
+  --apoio:            #ff9d6b;
+  --realce:           #7fd1e8;   /* o contorno do foco, bem visível            */
+  --realce-suave:     #2c2140;
+
+  --fundo:       #160f22;
+  --superficie:  #231a34;        /* mais clara que o fundo, de propósito       */
+  --zebra:       #1d1530;
+  --texto:       #f1ecf7;
+  --texto-fraco: #b3a7c4;
+  --linha:       #3c2f52;
+
+  /* Nenhuma regra de header, h1, nav, table ou button aqui — e é esse o
+     ponto do exercício: a página inteira troca de cara e nenhuma regra do
+     estilo.css foi reescrita. */
 }

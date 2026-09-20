@@ -1,272 +1,493 @@
 /* ==========================================================================
-   css/estilo.css — Supermercado Bom Preço — Equipe Vinland — ARA0062
-   ========================================================================== */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+   ARA0062 — folha de estilos do projeto
+   Loja Vórtex Geek — Equipe Vinland
+
 /* ==========================================================================
-   1. Cabeçalho e Variáveis CSS - Henrique Del Rio Toffalini
+   0. AS DECISÕES
+
+   :root é o <html>. Como tudo está dentro dele, o que se declara aqui vale
+   na página inteira.
+
+   Os nomes dizem o PAPEL da cor, não a cor. --principal continua fazendo
+   sentido quando ela deixar de ser roxa; --roxo, não.
+
+   Paleta própria da equipe (não é a paleta de exemplo da aula): roxo
+   vibrante como cor principal, apoio em verde-azulado e realce em âmbar —
+   combinação pensada para uma loja geek, sem depender de nenhuma marca.
+
+   Contraste conferido com a fórmula de luminância relativa do WCAG 2.1:
+     --texto sobre --superficie ....... 17,0:1
+     --principal sobre --superficie ... 9,9:1
+     --apoio sobre --superficie ....... 6,0:1
+     --texto-fraco sobre --fundo ...... 5,3:1
+
+   Quem fez: Henrique Toffalini — bloco de variáveis (:root).
    ========================================================================== */
+:root {
+  /* tipografia */
+  --fonte:      "Poppins", "Segoe UI", Arial, Helvetica, sans-serif;
 
-   :root {
-   --principal: #1f6f5c;
-   /* cabeçalho, títulos, botão principal */
-   
-   --principal-escuro: #14493d;
-   /* o hover do botão principal .         */
-   
-   --sobre-principal: #ffffff;
-   /* texto em cima da cor principal      */
+  /* cores.
+     Repare que cada variável tem UM papel só. --sobre-principal existe
+     porque o texto que fica em cima da cor principal não é o mesmo texto
+     que fica em cima do fundo — e, num tema escuro, ele chega a ser o
+     oposto. Variável com dois papéis é o que quebra na hora de trocar o
+     tema. */
+  --principal:        #5b2a86;   /* cabeçalho, títulos, botão principal */
+  --principal-escuro: #3d1c5e;   /* o hover do botão principal          */
+  --sobre-principal:  #ffffff;   /* texto em cima da cor principal      */
 
-   
-   --apoio: #b3541e;
-   --realce: #dfa03f;
-   /* o contorno do foco.                 */
+  --barra:            #241536;   /* o menu e o rodapé                   */
+  --sobre-barra:      #e6d9f2;   /* texto em cima da barra              */
 
-   --fundo: #e8f1ee;.
-   --superficie: #ffffff;
-   --texto: #222222;
-   --texto-fraco: #5a5a5a;
-   --linha: #cfe0da;
-   --fonte: "Poppins", Arial, Helvetica, sans-serif;
+  --apoio:            #0f6e6e;   /* h3, cabeçalho da tabela             */
+  --realce:           #ffb400;   /* o contorno do foco                  */
+  --realce-suave:     #f3e6ff;   /* fundos leves: zebra ao passar o
+                                    mouse, .destaque, a régua do h2     */
 
-   }
+  --fundo:       #f6f3fa;
+  --superficie:  #ffffff;
+  --zebra:       #f0eaf7;        /* as linhas pares da tabela           */
+  --texto:       #241536;
+  --texto-fraco: #6b6178;
+  --linha:       #ddd0e8;
+
+  /* a escala de espaço: quatro degraus, e nada fora deles.
+
+     É o mesmo argumento das variáveis de cor — decidir uma vez, no topo.
+     Escolher entre --e-2 e --e-3 é mais fácil do que escolher entre 16,
+     18, 20 e 24px, e o resultado fica coerente sozinho. */
+  --e-1: 0.5rem;    /*  8px */
+  --e-2: 1rem;      /* 16px */
+  --e-3: 1.5rem;    /* 24px */
+  --e-4: 2.5rem;    /* 40px */
+}
 
 
+/* --------------------------------------------------------------------------
+   AS TRÊS LINHAS DE SEMPRE
 
+   Com border-box, width passa a ser a largura TOTAL: padding e borda cabem
+   por DENTRO.
+
+   O * é o seletor universal: todo elemento. Os dois ::before/::after
+   cobrem os pseudo-elementos, que também são caixas.
+
+   Quem fez: Juliano Morais — reset (box-sizing).
+   -------------------------------------------------------------------------- */
 *,
 *::before,
 *::after {
-   box-sizing: border-box;
+  box-sizing: border-box;
 }
 
+
 /* ==========================================================================
-   2. Define estilos base (reset, body e títulos) - Juliano Morais
+   1. A PÁGINA
+
+   Tudo o que está no body é herdado por quem está dentro: fonte, tamanho,
+   entrelinha e cor do texto são escritos UMA vez, aqui.
+
+   Quem fez: Juliano Morais — body.
    ========================================================================== */
-
 body {
-   font-family: var(--fonte);
-   font-size: 1rem;
-   line-height: 1.6;
-   color: var(--texto);
-   background-color: var(--fundo);
+  font-family: var(--fonte);
+  font-size: 1rem;
+  line-height: 1.6;
 
-   max-width: 860px;
-   margin: 0 auto;
-   padding: 0 20px 40px;
+  color: var(--texto);
+  background-color: var(--fundo);
+
+  max-width: 860px;
+  margin: 0 auto;                      /* 0 em cima/embaixo, automático nas laterais */
+  padding: 0 var(--e-2) var(--e-4);
 }
 
-h1,
-h2,
-h3 {
-   color: var(--principal);
-}
-
-h1 {
-   font-size: 2rem;
-}
-
-h2 {
-   font-size: 1.375rem;
-   margin-top: 0;
-   padding-bottom: 0.25rem;
-   border-bottom: 2px solid var(--principal);
-}
 
 /* ==========================================================================
-   3. Estiliza cabeçalho, rodapé e cor padrão dos links - Bernardo Augusto Gontijo Dias
+   2. CABEÇALHO
+
+   Quem fez: Bernardo Augusto Gontijo Dias — estilo visual do cabeçalho
+   (cor de fundo, texto e espaçamento). As variáveis usadas aqui vêm do
+   bloco :root, de responsabilidade do Henrique.
    ========================================================================== */
 header {
-   background-color: var(--principal);
-   color: var(--sobre-principal);
-   text-align: center;
-   padding: 24px 16px;
-   border-radius: 6px;
-   margin-bottom: 24px;
+  background-color: var(--principal);
+  color: var(--sobre-principal);
+  padding: var(--e-4) var(--e-3);
 }
 
 header h1 {
-   color: var(--sobre-principal);
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin: 0 0 var(--e-1);
 }
 
+/* Descendente: só o parágrafo que está dentro do header.
+   Mais específico que a regra `p` da seção 4, então ele ganha. */
 header p {
-   color: var(--sobre-principal);
-   font-style: italic;
-   opacity: 0.9;
+  margin: 0;
+  color: var(--sobre-principal);
+  opacity: 0.85;          /* um degrau abaixo do h1, sem inventar outra cor */
 }
 
-footer {
-   margin-top: 40px;
-   padding-top: 16px;
-   border-top: 1px solid var(--linha);
-   text-align: center;
-   color: var(--texto-fraco);
-   font-size: 0.875rem;
-   /* 14px */
-}
-
-
-a {
-   color: var(--principal);
-   text-decoration: none;
-}
-
-a:hover {
-   /* enquanto o mouse está em cima */
-   color: var(--alerta);
-   text-decoration: underline;
-}
 
 /* ==========================================================================
-   4. Estiliza o layout base das sections e a lista de ofertas - João Vítor Vieira Nonato
+   3. O MENU
+
+   O <nav> é uma <ul>. inline-block põe os itens lado a lado.
+
+   O <a> precisa de um display próprio. Em `inline`, o padding vertical é
+   desenhado mas NÃO empurra nada — os fundos se sobrepõem às linhas
+   vizinhas e a área clicável não cresce. Com inline-block, o retângulo
+   inteiro vira alvo do mouse. Isso é acessibilidade, não enfeite: quem usa
+   no celular precisa de alvo grande.
    ========================================================================== */
-nav ul {
-   list-style: none;
-   padding: 0;
-   margin: 0 0 24px;
-   text-align: center;
+nav {
+  background-color: var(--barra);
+  padding: 0 var(--e-2);
 }
 
-nav ul>li {
-   display: inline-block;
-   margin: 0 4px;
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  display: inline-block;
 }
 
 nav a {
-   display: block;
-   font-weight: 600;
-   padding: 10px 14px;
-   border-radius: 4px;
+  display: inline-block;              /* <- é esta linha que faz o padding valer */
+  padding: var(--e-1) var(--e-2);
+  border-radius: 4px;
+  color: var(--sobre-barra);
+  text-decoration: none;              /* tira o sublinhado do link */
+  font-weight: 600;
+  font-size: 0.9375rem;
 }
 
 nav a:hover {
-   background-color: var(--superficie);
-   text-decoration: none;
+  background-color: var(--principal);
+  color: var(--sobre-principal);
 }
 
-
-
-
-section {
-   background-color: var(--superficie);
-   border: 1px solid var(--linha);
-   border-radius: 6px;
-   padding: 20px 24px;
-   margin-bottom: 24px;
-   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-   /* sombra sutil, só descola do fundo */
+nav a:focus {
+  outline: 3px solid var(--realce);
+  outline-offset: 2px;
 }
 
-
-
-
-
-lista-ofertas {
-   list-style: none;
-   padding: 0;
-}
-
-lista-ofertas li {
-   display: flex;
-   justify-content: space-between;
-   padding: 10px 0;
-   border-bottom: 1px solid var(--linha);
-}
-
-lista-ofertas li:last-child {
-   border-bottom: none;
-}
-
-lista-ofertas li:nth-child(even) {
-   background-color: var(--fundo);
-}
-
-.produto {
-   color: var(--texto);
-}
-
-.preco {
-   color: var(--principal);
-   font-weight: 600;
-}
-
-
-
-
-itens-selecionados {
-   list-style: none;
-   padding: 0;
-   min-height: 40px;
-}
-
-itens-selecionados li {
-   padding: 8px 0;
-   border-bottom: 1px dashed var(--linha);
-}
-
-total-compra {
-   font-weight: 600;
-   font-size: 1.125rem;
-   /* 18px */
-   text-align: right;
-   color: var(--apoio);
-}
 
 /* ==========================================================================
-   5. Estiliza os formulários - Isaías Daniel de Oliveira Lopes
+   4. CONTEÚDO
+
+   A escala tipográfica: 2.5 / 1.75 / 1.25 / 1. Quatro degraus visivelmente
+   diferentes — se o h2 e o h3 parecem iguais, não há hierarquia nenhuma.
+
+   E a escala de espaço:
+
+     - padding no `main`, porque o espaço tem de ser PINTADO de --superficie
+       (padding é espaço de dentro e recebe a cor do elemento);
+     - margin na `section`, porque ali o espaço só separa uma da outra
+       (margem é espaço de fora e é sempre transparente).
+
+   A regra prática: espaço para ser pintado é padding; espaço para separar
+   de outra coisa é margem.
+
+   Quem fez: João Vítor Vieira Nonato — layout base das sections (main,
+   section, listas) e a lista de lançamentos. As regras de h2/h3 (escala
+   tipográfica) são do Juliano, e a cor padrão dos links (a, a:hover) é
+   do Bernardo — marcadas abaixo, no meio da seção.
+   ========================================================================== */
+main {
+  background-color: var(--superficie);
+  padding: var(--e-2) var(--e-4) var(--e-4);
+}
+
+/* Cada seção afastada da seguinte por MARGEM: espaço de fora. */
+section {
+  margin-bottom: var(--e-4);
+}
+
+/* Quem fez: Juliano Morais — escala tipográfica (h2 e h3, abaixo). */
+h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--principal);
+
+  /* padding por dentro, para o texto não encostar na régua */
+  padding-bottom: var(--e-1);
+  border-bottom: 2px solid var(--realce-suave);
+
+  /* margin por fora, para o título não encostar na seção anterior.
+
+     Colapso de margens: aqui há var(--e-4) em cima e var(--e-4) no
+     margin-bottom da section acima. Margens verticais vizinhas se fundem
+     e a maior vence: o espaço que aparece é 40px, não 80. */
+  margin: var(--e-4) 0 var(--e-2);
+}
+
+/* O primeiro h2 não precisa de respiro em cima: já há o padding do main.
+
+   Sem esta regra a margem do primeiro filho COLAPSA COM O PAI e vaza para
+   fora dele. */
+main section:first-of-type h2 {
+  margin-top: 0;
+}
+
+/* Espaço entre parágrafos só embaixo: as margens verticais vizinhas
+   colapsam de qualquer jeito, então declarar os dois lados seria trabalho
+   perdido. */
+p {
+  margin: 0 0 var(--e-2);
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--apoio);
+}
+
+/* Quem fez: Bernardo Augusto Gontijo Dias — cor padrão dos links. */
+a {
+  color: var(--principal);
+}
+
+a:hover {
+  color: var(--principal-escuro);
+}
+
+img {
+  max-width: 100%;      /* a imagem nunca estoura a coluna */
+  height: auto;
+  border-radius: 6px;
+}
+
+/* As listas de conteúdo continuam sendo listas — só ficam mais arejadas. */
+main ul li,
+main ol li {
+  margin-bottom: var(--e-1);
+}
+
+strong {
+  color: var(--principal-escuro);
+}
+
+
+/* ==========================================================================
+   5. A TABELA
+
+   border-collapse é a primeira linha de qualquer tabela: sem ele, cada
+   célula desenha a própria borda e ficam duas linhas entre vizinhas.
+   ========================================================================== */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: var(--e-2) 0 var(--e-1);
+}
+
+caption {
+  text-align: left;
+  font-weight: 600;
+  color: var(--apoio);
+  padding-bottom: var(--e-1);
+}
+
+th,
+td {
+  border: 1px solid var(--linha);
+  padding: var(--e-1) var(--e-2);
+  text-align: left;
+}
+
+/* O th do thead é cabeçalho de coluna. */
+thead th {
+  background-color: var(--apoio);
+  color: var(--superficie);   /* no tema escuro, o apoio é claro e a
+                                 superfície é escura: continua legível */
+}
+
+/* E o th do tbody é cabeçalho de linha — outro papel, outro peso. */
+tbody th {
+  background-color: var(--fundo);
+  color: var(--principal);
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--zebra);
+}
+
+tbody tr:hover {
+  background-color: var(--realce-suave);
+}
+
+
+/* ==========================================================================
+   6. OS FORMULÁRIOS (retirada/entrega e contato)
+
+   É AQUI QUE O border-box MAIS APARECE: os campos têm width: 100% e
+   padding junto. Com as três linhas do topo, o total é 100% e o
+   conteúdo é que encolhe para caber.
+
+   Quem fez: Isaías Daniel de Oliveira Lopes — toda esta seção (form,
+   fieldset, legend, label, campos, textarea, checkbox, foco e botões).
    ========================================================================== */
 form {
-   display: flex;
-   flex-direction: column;
-   gap: 4px;
-   margin-top: 12px;
+  background-color: var(--fundo);
+  padding: var(--e-3);
+  border-radius: 8px;
+  border-top: 4px solid var(--principal);
 }
 
-form label {
-   display: block;
-   font-weight: 600;
-   margin-top: 12px;
+fieldset {
+  border: 1px solid var(--linha);
+  border-radius: 6px;
+  background-color: var(--superficie);
+  padding: var(--e-2) var(--e-2) var(--e-1);
+  margin-bottom: var(--e-2);
 }
 
+legend {
+  color: var(--principal);
+  font-weight: 600;
+  padding: 0 var(--e-1);
+}
+
+/* Cada campo separado do outro com margem. */
+form div {
+  margin-bottom: var(--e-2);
+}
+
+label {
+  display: block;                /* sem isto o label ficaria na mesma linha
+                                    do campo: inline não empurra nada */
+  font-weight: 600;
+  font-size: 0.9375rem;
+  margin-bottom: var(--e-1);
+}
+
+/* Seletor de atributo: escolhe o input pelo type.
+   Sem isso, "input { width: 100% }" esticaria também o checkbox. */
 input[type="text"],
-input[type="tel"],
 input[type="email"],
+input[type="tel"],
 select,
 textarea {
-   width: 100%;
-   padding: 10px 12px;
-   margin-top: 4px;
-   border: 1px solid var(--linha);
-   border-radius: 4px;
+  width: 100%;
+  padding: var(--e-1) var(--e-2);
+  border: 1px solid var(--linha);
+  border-radius: 4px;
 
-   font-family: inherit;
-   font-size: 1rem;
-   color: var(--texto);
+  /* Sem estas duas linhas o campo fica com o branco de fábrica do
+     navegador — e no tema escuro isso vira texto claro sobre fundo
+     branco, ou seja, invisível. */
+  background-color: var(--superficie);
+  color: var(--texto);
+
+  /* Campo de formulário não herda a fonte do body — tem de pedir. */
+  font-family: inherit;
+  font-size: 1rem;
 }
 
 textarea {
-   resize: vertical;
+  resize: vertical;
+  min-height: 7.5rem;
 }
 
+input[type="checkbox"] {
+  width: auto;
+  margin-right: var(--e-1);
+}
 
+input[type="checkbox"] + label {
+  display: inline;
+  font-weight: 400;
+}
+
+/* :focus é acessibilidade, não enfeite: é como quem navega por Tab sabe
+   onde está. Nunca apague o contorno sem pôr outra marca no lugar. */
 input:focus,
 select:focus,
 textarea:focus {
-   outline: 2px solid var(--principal);
-   outline-offset: 1px;
+  outline: 3px solid var(--realce);
+  outline-offset: 1px;
+  border-color: var(--principal);
 }
 
 button {
-   margin-top: 16px;
-   align-self: flex-start;
-   background-color: var(--apoio);
-   color: #ffffff;
-   border: none;
-   padding: 10px 24px;
-   border-radius: 4px;
-   font-family: inherit;
-   font-size: 1rem;
-   cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: var(--e-2) var(--e-3);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-button:hover {
-   background-color: var(--principal);
+button[type="submit"] {
+  background-color: var(--principal);
+  color: var(--sobre-principal);
+}
+
+button[type="submit"]:hover {
+  background-color: var(--principal-escuro);
+}
+
+/* O botão secundário não compete com o principal. */
+button[type="reset"] {
+  background-color: var(--superficie);
+  color: var(--texto-fraco);
+  border: 1px solid var(--linha);
+  margin-left: var(--e-1);
+}
+
+button:focus {
+  outline: 3px solid var(--realce);
+  outline-offset: 2px;
+}
+
+
+/* ==========================================================================
+   7. BARRA LATERAL E RODAPÉ
+
+   Quem fez: Bernardo Augusto Gontijo Dias — rodapé (footer). O aside não
+   está atribuído na tabela do README.
+   ========================================================================== */
+aside {
+  background-color: var(--superficie);
+  border-left: 4px solid var(--realce);
+  padding: var(--e-2) var(--e-3);
+  margin-top: var(--e-1);
+}
+
+aside h2 {
+  margin-top: var(--e-1);
+  font-size: 1.25rem;
+  border-bottom: none;
+}
+
+footer {
+  background-color: var(--barra);
+  color: var(--sobre-barra);
+  padding: var(--e-2) var(--e-3);
+  font-size: 0.875rem;
+}
+
+footer p {
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   8. UMA CLASSE, PARA MOSTRAR QUE ELA EXISTE
+
+   Classe é o crachá: use-a quando o que você quer estilizar não é "todo
+   elemento X", e sim "estes aqui". Ponha class="destaque" em qualquer
+   parágrafo do index.html para ver.
+   ========================================================================== */
+.destaque {
+  background-color: var(--realce-suave);
+  border-left: 4px solid var(--principal);
+  padding: var(--e-2);
 }
