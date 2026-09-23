@@ -47,8 +47,7 @@ dia.
 | Juliano Morais Santos Murta | 202602147068 | @Juliano31545 | integrante |
 | João Vítor Vieira Nonato | 202601783629 | @joaovitorvieiranonatto2-ship-it | **líder** |
 | Henrique Del Rio Toffalini | 202602188694 | @4kToffa | integrante |
-| Isaías Daniel de Oliveira Lopes | 202602349116 | @IsaiasDanieldeOliveiraLopes
- | integrante |
+| Isaías Daniel de Oliveira Lopes | 202602349116 | @IsaiasDanieldeOliveiraLopes | integrante |
 
 Cada integrante acrescenta a **sua própria linha** nesta tabela, pelo GitHub.
 Esse é o commit que registra a sua participação.
