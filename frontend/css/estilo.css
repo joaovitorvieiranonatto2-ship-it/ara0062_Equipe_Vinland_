@@ -24,6 +24,11 @@
    Quem fez: Henrique Toffalini — bloco de variáveis (:root).
    ========================================================================== */
 :root {
+  /* Par do color-scheme: dark do tema-noite.css — avisa o navegador que
+     a UI nativa (barra de rolagem, select, autopreenchimento) deve usar
+     a aparência clara aqui. */
+  color-scheme: light;
+
   /* tipografia */
   --fonte:      "Poppins", "Segoe UI", Arial, Helvetica, sans-serif;
 
@@ -173,7 +178,7 @@ nav a:hover {
   color: var(--sobre-principal);
 }
 
-nav a:focus {
+nav a:focus-visible {
   outline: 3px solid var(--realce);
   outline-offset: 2px;
 }
@@ -268,6 +273,46 @@ img {
 main ul li,
 main ol li {
   margin-bottom: var(--e-1);
+}
+
+/* --------------------------------------------------------------------------
+   Lançamentos e carrinho.
+   O index.html usa .produto e .preco dentro de #lista-lancamentos, e listas
+   próprias em #itens-selecionados e #total-compra — nenhuma delas tinha
+   regra: sem isto, os itens saem como texto corrido, sem alinhar o preço.
+   -------------------------------------------------------------------------- */
+#lista-lancamentos,
+#itens-selecionados {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--e-2);
+}
+
+#lista-lancamentos li,
+#itens-selecionados li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--e-2);
+  padding: var(--e-1) 0;
+  border-bottom: 1px solid var(--linha);
+}
+
+.produto {
+  color: var(--texto);
+}
+
+.preco {
+  font-weight: 600;
+  color: var(--principal);
+  white-space: nowrap;
+}
+
+#total-compra {
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: var(--principal);
+  text-align: right;
 }
 
 strong {
@@ -407,9 +452,9 @@ input[type="checkbox"] + label {
 
 /* :focus é acessibilidade, não enfeite: é como quem navega por Tab sabe
    onde está. Nunca apague o contorno sem pôr outra marca no lugar. */
-input:focus,
-select:focus,
-textarea:focus {
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
   outline: 3px solid var(--realce);
   outline-offset: 1px;
   border-color: var(--principal);
@@ -442,7 +487,7 @@ button[type="reset"] {
   margin-left: var(--e-1);
 }
 
-button:focus {
+button:focus-visible {
   outline: 3px solid var(--realce);
   outline-offset: 2px;
 }
@@ -490,4 +535,101 @@ footer p {
   background-color: var(--realce-suave);
   border-left: 4px solid var(--principal);
   padding: var(--e-2);
+}
+
+
+/* ==========================================================================
+   9. O JAVASCRIPT DO CICLO 6
+
+   #saudacao, #botao-tema e #contador-mensagem são manipulados pelo
+   js/script.js, mas nenhuma cor é escrita lá — só o texto e a classe.
+   O JavaScript decide QUANDO muda; o CSS decide COMO fica.
+   ========================================================================== */
+#saudacao {
+  color: var(--sobre-principal);
+  opacity: 0.85;
+  margin: var(--e-1) 0 0;
+  font-size: 0.9375rem;
+}
+
+.botao-tema {
+  margin-top: var(--e-1);
+  background-color: transparent;
+  color: var(--sobre-principal);
+  border: 2px solid var(--sobre-principal);
+  border-radius: 4px;
+  padding: var(--e-1) var(--e-2);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.botao-tema:hover {
+  background-color: var(--sobre-principal);
+  color: var(--principal);
+}
+
+.botao-tema:focus-visible {
+  outline: 3px solid var(--realce);
+  outline-offset: 2px;
+}
+
+/* O contador nasce discreto — é a classe "alerta" que chama a atenção
+   quando faltam menos de 50 caracteres, adicionada pelo script.js. */
+.contador {
+  font-size: 0.8125rem;
+  color: var(--texto-fraco);
+  margin: var(--e-1) 0 0;
+  text-align: right;
+}
+
+.contador.alerta {
+  color: var(--apoio);
+  font-weight: 600;
+}
+
+
+/* ==========================================================================
+   10. RESPONSIVIDADE
+
+   Sem isto, o nav com cinco links inline-block e o padding var(--e-4) do
+   main e do header espremiam o conteúdo em telas de celular.
+
+   Um só ponto de corte, no tamanho onde o layout começa a apertar — não
+   é preciso mais que isso para uma página deste tamanho.
+   ========================================================================== */
+@media (max-width: 600px) {
+  header {
+    padding: var(--e-3) var(--e-2);
+  }
+
+  header h1 {
+    font-size: 1.875rem;             /* um degrau abaixo do 2.5rem de telas largas */
+  }
+
+  main {
+    padding: var(--e-2) var(--e-2) var(--e-3);
+  }
+
+  /* Os itens do menu deixam de ficar todos numa linha só e quebram. */
+  nav li {
+    display: block;
+  }
+
+  nav a {
+    padding: var(--e-1) 0;
+  }
+
+  /* Campos lado a lado (se algum dia houver) voltam a empilhar. */
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  #lista-lancamentos li,
+  #itens-selecionados li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--e-1);
+  }
 }

@@ -6,9 +6,21 @@
 <meta name="description" content="Projeto da disciplina ARA0062 — Equipe Vinland. Site da Loja Vórtex Geek.">
 <title>Loja Vórtex Geek — Equipe Vinland</title>
 
+<!-- As variáveis --fonte dos dois temas pedem Poppins, mas nada aqui
+     carregava a fonte: o site inteiro caía para o Segoe UI/Arial da
+     lista de fallback. Estas duas linhas trazem a fonte de verdade. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/estilo.css">
-<link rel="stylesheet" href="css/tema-noite.css">
+
+<!-- Ciclo 6: o tema escuro deixa de ser "comente uma linha à mão" e passa
+     a ser um interruptor de verdade. O <link> fica sempre presente, mas
+     começa DESLIGADO (disabled): a folha existe, só não é aplicada. Quem
+     liga e desliga é o botaoTema, lá no js/script.js — nenhuma cor é
+     escrita nele, só o interruptor. -->
+<link rel="stylesheet" href="css/tema-noite.css" id="tema-noite" disabled>
 
 </head>
 
@@ -17,6 +29,20 @@
 <header>
 <h1>Loja Vórtex Geek</h1>
 <p>Projeto da equipe Vinland — ARA0062</p>
+
+<!--
+Ciclo 6: id="saudacao" para o script.js encontrar este parágrafo com
+querySelector. "Olá!" é o texto de fábrica — sem JavaScript (ou se o
+arquivo falhar), a página continua dizendo algo que faz sentido.
+-->
+<p id="saudacao">Olá!</p>
+
+<!--
+Ciclo 6: nada de onclick="" aqui — é a regra irmã do style="" do CSS.
+O botão só diz que existe e tem id; quem decide o que acontece ao
+clicar é o addEventListener do js/script.js.
+-->
+<button type="button" id="botao-tema" class="botao-tema">Tema escuro</button>
 </header>
 
 <nav>
@@ -76,10 +102,11 @@ a lista é fixa; futuramente pode vir do backend.
 </ul>
 
 <!--
-No ciclo 6, cada botão "adicionar" aqui chama uma função do
-js/script.js que soma o preço do item ao total do carrinho
-(seção #carrinho). Enquanto o JS não existe, os itens ficam
-apenas exibidos, sem interação.
+O carrinho de compras (somar preços, listar itens escolhidos) ainda não
+foi construído — é comportamento mais complexo que fica para o ciclo 7.
+O ciclo 6 trouxe as primeiras três peças de JavaScript do projeto: a
+saudação do cabeçalho, o botão de tema e o contador da mensagem de
+contato, todas em js/script.js.
 -->
 </section>
 
@@ -98,8 +125,9 @@ acompanhar o total da compra em tempo real.
 
 <!--
 O cálculo do total (somar/remover itens, atualizar o valor em
-#total-compra) entra no ciclo 6, junto com o restante do JS.
-A estrutura HTML já fica pronta para não precisar mexer depois.
+#total-compra) ainda não foi construído — fica para o ciclo 7,
+junto com a validação dos formulários. A estrutura HTML já fica
+pronta para não precisar mexer depois.
 -->
 </section>
 
@@ -108,21 +136,29 @@ A estrutura HTML já fica pronta para não precisar mexer depois.
 <p>Preencha os dados abaixo para retirar na loja ou receber em casa.</p>
 
 <form id="form-entrega">
+<div>
 <label for="nome-cliente">Nome completo</label>
 <input type="text" id="nome-cliente" name="nome-cliente" required>
+</div>
 
+<div>
 <label for="endereco-entrega">Endereço de entrega</label>
 <input type="text" id="endereco-entrega" name="endereco-entrega" required>
+</div>
 
+<div>
 <label for="telefone-cliente">Telefone</label>
 <input type="tel" id="telefone-cliente" name="telefone-cliente" required>
+</div>
 
+<div>
 <label for="forma-pagamento">Forma de pagamento</label>
 <select id="forma-pagamento" name="forma-pagamento">
 <option value="pix">Pix</option>
 <option value="cartao">Cartão na entrega</option>
 <option value="dinheiro">Dinheiro</option>
 </select>
+</div>
 
 <button type="submit">Confirmar pedido</button>
 </form>
@@ -140,14 +176,27 @@ no backend. Enquanto não há PHP, o action fica em "#".
 <p>Dúvidas, sugestões ou reclamações? Fale com a gente.</p>
 
 <form id="form-contato">
+<div>
 <label for="nome-contato">Nome</label>
 <input type="text" id="nome-contato" name="nome-contato" required>
+</div>
 
+<div>
 <label for="email-contato">E-mail</label>
 <input type="email" id="email-contato" name="email-contato" required>
+</div>
 
+<div>
 <label for="mensagem-contato">Mensagem</label>
-<textarea id="mensagem-contato" name="mensagem-contato" rows="4" required></textarea>
+<textarea id="mensagem-contato" name="mensagem-contato" rows="4" maxlength="500" required></textarea>
+
+<!--
+Ciclo 6: o número some se o JavaScript não rodar — maxlength="500" já
+protege o campo sozinho, pelo próprio navegador. O parágrafo só AVISA
+quanto ainda cabe; quem impede passar de 500 é o atributo, não o script.
+-->
+<p id="contador-mensagem" class="contador">Até 500 caracteres</p>
+</div>
 
 <button type="submit">Enviar mensagem</button>
 </form>
@@ -166,8 +215,9 @@ no backend. Enquanto não há PHP, o action fica em "#".
 </footer>
 
 <!--
-O JavaScript também está vazio por enquanto — ele entra no ciclo 6.
-defer faz o script rodar depois que a página terminou de carregar.
+Ciclo 6: js/script.js deixou de estar vazio. defer faz o navegador ler
+o HTML inteiro antes de rodar o script — por isso #saudacao, #botao-tema
+e #contador-mensagem já existem quando o arquivo procura por eles.
 -->
 <script src="js/script.js" defer></script>
 

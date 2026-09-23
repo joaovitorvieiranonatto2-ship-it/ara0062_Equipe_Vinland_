@@ -46,10 +46,16 @@
      --apoio sobre --superficie ............ 8,1:1
      --texto-fraco sobre --fundo ........... 8,2:1
 
-   Quem fez: João Vítor Vieira Nonato — paleta e conferência de contraste deste
+   Quem fez: Marina Souza Lima — paleta e conferência de contraste deste
    tema escuro.
    ========================================================================== */
 :root {
+  /* Sem isto, a barra de rolagem, o menu do <select> e o autopreenchimento
+     do navegador continuam com a aparência clara de fábrica mesmo com
+     este tema ativo — são elementos que o CSS comum não alcança, só esta
+     propriedade. */
+  color-scheme: dark;
+
   /* tipografia — o tema não muda a fonte, só as cores. */
   --fonte:      "Poppins", "Segoe UI", Arial, Helvetica, sans-serif;
 
