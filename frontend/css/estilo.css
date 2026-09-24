@@ -633,3 +633,18 @@ footer p {
     gap: var(--e-1);
   }
 }
+.logo {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.logo img {
+  height: 120px;
+  width: auto;
+  display: block;
+}
+
+.logo .logo-noite {
+  display: none;
+}

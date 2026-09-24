@@ -84,3 +84,10 @@
      ponto do exercício: a página inteira troca de cara e nenhuma regra do
      estilo.css foi reescrita. */
 }
+.logo .logo-normal {
+  display: none;
+}
+
+.logo .logo-noite {
+  display: block;
+}
