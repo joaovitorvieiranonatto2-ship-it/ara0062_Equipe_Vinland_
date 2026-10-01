@@ -57,6 +57,11 @@
   --texto-fraco: #6b6178;
   --linha:       #ddd0e8;
 
+  /* o logo: qual das duas imagens aparece. Não é cor, mas é identidade do
+     tema — por isso mora aqui, e o tema-noite.css só inverte os valores. */
+  --logo-normal: block;          /* logo branco, sobre o roxo do cabeçalho */
+  --logo-noite:  none;           /* logo preto, só no tema escuro          */
+
   /* a escala de espaço: quatro degraus, e nada fora deles.
 
      É o mesmo argumento das variáveis de cor — decidir uma vez, no topo.
@@ -633,6 +638,13 @@ footer p {
     gap: var(--e-1);
   }
 }
+/* ==========================================================================
+   11. O LOGO
+
+   Quem fez: Bernardo Augusto Gontijo Dias — logo do cabeçalho.
+   As duas imagens estão no HTML; o valor das variáveis --logo-normal e
+   --logo-noite (no :root de cada tema) decide qual delas aparece.
+   ========================================================================== */
 .logo {
   display: block;
   width: fit-content;
@@ -642,9 +654,12 @@ footer p {
 .logo img {
   height: 120px;
   width: auto;
-  display: block;
+}
+
+.logo .logo-normal {
+  display: var(--logo-normal);
 }
 
 .logo .logo-noite {
-  display: none;
+  display: var(--logo-noite);
 }
