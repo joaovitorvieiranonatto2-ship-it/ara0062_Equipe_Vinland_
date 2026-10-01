@@ -5,7 +5,7 @@ e PHP** — Centro Universitário Newton Paiva, 2026/2.
 
 ## Assunto
 
-Loja Vórtex Geek — comércio eletrônico voltado a colecionáveis e cultura
+**Assunto:** Loja Vórtex Geek — comércio eletrônico voltado a colecionáveis e cultura
 geek (quadrinhos, mangás, board games, miniaturas e itens temáticos).
 
 ## Sobre
@@ -19,23 +19,40 @@ dia.
 
 ## Identidade visual
 
-- **Cor principal:** roxo vibrante (`--principal`), usado no cabeçalho,
-  nos títulos e no botão de ação principal — remete a capas de quadrinho e
-  embalagens de colecionáveis.
-- **Cor de apoio:** verde-azulado (`--apoio`), usado no `h3` e no
-  cabeçalho da tabela.
-- **Realce:** âmbar (`--realce`), reservado ao contorno de foco dos
-  campos e links, para acessibilidade de teclado.
-- **Tema escuro (`tema-noite.css`):** paleta própria, criada do zero para
-  este projeto — fundo roxo-quase-preto, superfície mais clara que o
-  fundo e cor principal em verde-água néon, com o hover clareando em vez
-  de escurecer. Nenhum valor de cor é repetido entre os dois temas nem
-  copiado do exemplo dado em aula.
-- **Tipografia:** Poppins como fonte principal, com escala de 2,5 / 1,75 /
-  1,25 / 1rem entre `h1`, `h2`, `h3` e o corpo do texto.
-- Todo contraste de texto sobre fundo foi conferido pela fórmula de
-  luminância relativa do WCAG 2.1 e fica acima de 4,5:1 nos dois temas
-  (ver comentários no topo de `estilo.css` e `tema-noite.css`).
+O assunto é uma loja de quadrinhos, mangás, board games e colecionáveis. Cada
+escolha abaixo parte desse universo.
+
+**Cores:**
+
+- **Roxo vibrante `#5b2a86` (`--principal`)** — cabeçalho, títulos, preços e
+  botão de ação. É a cor das capas de quadrinho e das caixas de
+  colecionáveis: chama atenção na prateleira sem ser o vermelho de
+  promoção. Branco por cima dá 9,9:1 de contraste.
+- **Roxo-noite `#241536` (`--barra`)** — menu e rodapé. É o fundo escuro das
+  lojas geek e das capas de mangá; emoldura a página e faz o roxo principal
+  parecer mais aceso.
+- **Verde-azulado `#0f6e6e` (`--apoio`)** — `h3`, cabeçalho da tabela e o
+  aviso do contador. Lembra o brilho de tela de videogame e as cartas de
+  jogos, e é a cor complementar do roxo: separa informação secundária sem
+  competir com a principal.
+- **Âmbar `#ffb400` (`--realce`)** — contorno de foco dos links e campos.
+  É o dourado dos itens raros e das edições especiais, que no assunto
+  significa "olhe aqui"; por isso marca onde o teclado está.
+
+**Tema escuro (`tema-noite.css`):** paleta própria — fundo roxo-quase-preto
+(`#160f22`) e cor principal em verde-água néon (`#5ee6d0`), o visual de
+arcade e de vitrine iluminada à noite. O arquivo tem uma regra só (`:root`):
+só troca os valores das variáveis, inclusive qual logo aparece.
+
+**Fonte:** Poppins, com Segoe UI, Arial e `sans-serif` de reserva. É uma
+fonte geométrica, de traço redondo e moderno, parecida com a dos logos de
+editoras de mangá e de marcas de board game — passa a ideia de loja jovem e
+de cultura pop, e continua fácil de ler em tela pequena. Escala de
+2,5 / 1,75 / 1,25 / 1rem entre `h1`, `h2`, `h3` e o corpo do texto.
+
+Todo contraste de texto sobre fundo foi conferido pela fórmula de luminância
+relativa do WCAG 2.1 e fica acima de 4,5:1 nos dois temas (ver comentários
+no topo de `estilo.css` e `tema-noite.css`).
 
 ## Equipe
 
@@ -71,7 +88,8 @@ no servidor (PHP).
 │   ├─ js/
 │   │   └─ script.js       comportamento da página (a partir do ciclo 6)
 │   └─ img/
-│       └─ .gitkeep        arquivo vazio que segura a pasta no Git
+│       ├─ logo_branca.png logo do tema claro
+│       └─ logo_preta.png  logo do tema escuro
 └─ backend/                tudo o que roda no servidor
     ├─ config/
     │   └─ conexao.php     conexão com o banco (a partir do ciclo 8)
