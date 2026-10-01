@@ -5,7 +5,7 @@
    Este arquivo tem UMA regra. Ele não conhece o menu, não sabe o que é uma
    tabela e não desenha nada: só diz quais cores ocupam quais papéis.
 
-   Os CATORZE nomes de variável são os MESMOS do estilo.css, na mesma
+   Os DEZESSEIS nomes de variável são os MESMOS do estilo.css, na mesma
    ordem — só os valores mudam. Os valores abaixo são uma paleta escura
    própria da equipe, criada do zero para este tema: nenhuma variável foi
    copiada do estilo.css, e nenhum valor repete a paleta de exemplo da aula.
@@ -15,10 +15,11 @@
    estaria redesenhando a página em vez de trocar a cara dela.
 
    COMO LIGAR
-   A linha já está ativa no index.html:
+   A linha está no index.html, começando desligada (disabled); quem liga e
+   desliga é o botão de tema, pelo js/script.js:
 
      <link rel="stylesheet" href="css/estilo.css">
-     <link rel="stylesheet" href="css/tema-noite.css">
+     <link rel="stylesheet" href="css/tema-noite.css" id="tema-noite" disabled>
 
    Ela vem DEPOIS do estilo.css: mesmo seletor (:root), mesma especificidade,
    ganha o último. É a cascata da aula 04.
@@ -59,7 +60,7 @@
   /* tipografia — o tema não muda a fonte, só as cores. */
   --fonte:      "Poppins", "Segoe UI", Arial, Helvetica, sans-serif;
 
-  /* cores — os mesmos catorze nomes do estilo.css, na mesma ordem, com
+  /* cores — os mesmos nomes do estilo.css, na mesma ordem, com
      valores próprios: um verde-água néon como cor principal do tema
      escuro (não é dourado, não é o roxo do tema claro) */
   --principal:        #5ee6d0;   /* o verde-água néon só funciona sobre escuro */
@@ -80,14 +81,13 @@
   --texto-fraco: #b3a7c4;
   --linha:       #3c2f52;
 
+  /* o logo — o tema escolhe QUAL das duas imagens aparece; quem esconde e
+     mostra é a regra .logo do estilo.css. Assim a troca do logo também é
+     só um valor, e este arquivo continua com uma regra só. */
+  --logo-normal: none;           /* o logo branco some                         */
+  --logo-noite:  block;          /* o logo preto aparece sobre o verde-água    */
+
   /* Nenhuma regra de header, h1, nav, table ou button aqui — e é esse o
      ponto do exercício: a página inteira troca de cara e nenhuma regra do
      estilo.css foi reescrita. */
-}
-.logo .logo-normal {
-  display: none;
-}
-
-.logo .logo-noite {
-  display: block;
 }
