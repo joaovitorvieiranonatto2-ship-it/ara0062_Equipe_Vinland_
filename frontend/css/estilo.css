@@ -663,3 +663,99 @@ footer p {
 .logo .logo-noite {
   display: var(--logo-noite);
 }
+
+
+/* ==========================================================================
+   12. O AVISO DO FORMULÁRIO (aula 07)
+
+   O <p class="aviso"> nasce vazio, e o JavaScript escreve nele o resultado
+   da conferência: o primeiro problema encontrado, ou "Tudo certo!". As
+   páginas de resposta do PHP também usam esta classe, para o "Mensagem nº…
+   guardada".
+
+   :empty escolhe o elemento que não tem nada dentro. Enquanto o aviso está
+   vazio, ele não ocupa espaço nem mostra a borda — e aparece sozinho no
+   primeiro clique em Enviar, sem o script mexer em CSS nenhum.
+   ========================================================================== */
+.aviso {
+  margin: var(--e-2) 0 0;
+  padding: var(--e-1) var(--e-2);
+  border-left: 4px solid var(--principal);
+  background-color: var(--realce-suave);
+  color: var(--texto);
+  font-weight: 600;
+}
+
+.aviso:empty {
+  display: none;
+}
+
+
+/* ==========================================================================
+   13. OS CARDS DOS LANÇAMENTOS (ciclo 9)
+
+   A lista de lançamentos deixa de ser texto corrido: cada item é um card com
+   foto, nome, descrição e preço. Uma grade (CSS Grid) põe os cards em
+   colunas; auto-fill cria quantas colunas couberem, com no mínimo 220px
+   cada. Num celular isso dá uma coluna só; numa tela larga, três.
+
+   Regra da seção 4: as regras de #lista-lancamentos li (flex, linha
+   divisória) ainda valem para os cards — por isso o seletor aqui é
+   #lista-lancamentos .card, mais específico, que as zera.
+   ========================================================================== */
+#lista-lancamentos.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--e-2);
+  margin: 0 0 var(--e-2);
+}
+
+#lista-lancamentos .card {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--linha);
+  border-radius: 8px;
+  background-color: var(--superficie);
+  overflow: hidden;
+}
+
+/* a foto ocupa a largura do card; object-fit deixa a proporção certa
+   mesmo se alguém trocar o SVG por uma foto de outro formato */
+#lista-lancamentos .card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 0;
+  margin: 0;
+}
+
+#lista-lancamentos .card-corpo {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: var(--e-1);
+  padding: var(--e-2);
+}
+
+/* o nome do produto: h3, com a cor de apoio da escala de títulos */
+#lista-lancamentos .card h3 {
+  font-size: 1.0625rem;
+  line-height: 1.3;
+  margin: 0;
+}
+
+#lista-lancamentos .card-descricao {
+  font-size: 0.875rem;
+  color: var(--texto-fraco);
+  margin: 0;
+}
+
+/* o preço vai para o pé do card, para que os preços fiquem alinhados
+   mesmo quando a descrição tem uma ou duas linhas */
+#lista-lancamentos .card .preco {
+  margin: auto 0 0;
+  font-size: 1.125rem;
+}

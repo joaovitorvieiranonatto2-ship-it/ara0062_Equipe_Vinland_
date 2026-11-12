@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-labelledby="t">
+  <title id="t">Miniatura colecionável de 12 cm</title>
+  <rect width="400" height="300" fill="#f3e6ff"/>
+  <circle cx="200" cy="150" r="120" fill="#e6d3f5"/>
+  <text x="24" y="44" font-family="Poppins, Arial, sans-serif" font-size="18" font-weight="700" fill="#5b2a86">12 cm</text>
+  <!-- base -->
+  <rect x="150" y="236" width="100" height="18" rx="4" fill="#241536"/>
+  <ellipse cx="200" cy="236" rx="50" ry="8" fill="#3d1c5e"/>
+  <!-- pernas -->
+  <rect x="184" y="200" width="14" height="36" rx="3" fill="#241536"/>
+  <rect x="202" y="200" width="14" height="36" rx="3" fill="#241536"/>
+  <!-- corpo e ombros -->
+  <rect x="182" y="150" width="36" height="58" rx="8" fill="#5b2a86"/>
+  <rect x="165" y="160" width="70" height="18" rx="6" fill="#5b2a86"/>
+  <rect x="152" y="162" width="16" height="50" rx="6" fill="#5b2a86"/>
+  <!-- cabeça e visor -->
+  <circle cx="200" cy="125" r="22" fill="#0f6e6e"/>
+  <rect x="188" y="120" width="24" height="8" rx="3" fill="#ffb400"/>
+  <!-- espada -->
+  <rect x="238" y="108" width="6" height="96" fill="#cfd8e3"/>
+  <rect x="228" y="196" width="26" height="6" rx="2" fill="#ffb400"/>
+  <rect x="238" y="200" width="6" height="14" fill="#241536"/>
+</svg>

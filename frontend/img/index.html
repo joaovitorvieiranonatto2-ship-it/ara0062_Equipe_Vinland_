@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Projeto da disciplina ARA0062 — Equipe Vinland. Site da Loja Vórtex Geek.">
+<title>Loja Vórtex Geek — Equipe Vinland</title>
+
+<!-- As variáveis --fonte dos dois temas pedem Poppins, mas nada aqui
+     carregava a fonte: o site inteiro caía para o Segoe UI/Arial da
+     lista de fallback. Estas duas linhas trazem a fonte de verdade. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/estilo.css">
+
+<!-- Ciclo 6: o tema escuro deixa de ser "comente uma linha à mão" e passa
+     a ser um interruptor de verdade. O <link> fica sempre presente, mas
+     começa DESLIGADO (disabled): a folha existe, só não é aplicada. Quem
+     liga e desliga é o botaoTema, lá no js/script.js — nenhuma cor é
+     escrita nele, só o interruptor. -->
+<link rel="stylesheet" href="css/tema-noite.css" id="tema-noite" disabled>
+
+</head>
+
+<body>
+
+<header>
+<h1>
+   <a href="index.html" class="logo">
+  <img src="img/logo_branca.png" alt="Vortex - A sua loja geek" class="logo-normal">
+  <img src="img/logo_preta.png" alt="Vortex - A sua loja geek" class="logo-noite">
+</a>
+</h1>
+<p>Projeto da equipe Vinland — ARA0062</p>
+
+<!--
+Ciclo 6: id="saudacao" para o script.js encontrar este parágrafo com
+querySelector. "Olá!" é o texto de fábrica — sem JavaScript (ou se o
+arquivo falhar), a página continua dizendo algo que faz sentido.
+-->
+<p id="saudacao">Olá!</p>
+
+<!--
+Ciclo 6: nada de atributo onclick aqui — é a regra irmã da que proíbe estilo escrito direto no HTML.
+O botão só diz que existe e tem id; quem decide o que acontece ao
+clicar é o addEventListener do js/script.js.
+-->
+<button type="button" id="botao-tema" class="botao-tema">Tema escuro</button>
+</header>
+
+<nav>
+<ul>
+<li><a href="#sobre">Sobre</a></li>
+<li><a href="#lancamentos">Lançamentos da semana</a></li>
+<li><a href="#carrinho">Meu carrinho</a></li>
+<li><a href="#retirada">Retirada ou entrega</a></li>
+<li><a href="#contato">Contato</a></li>
+</ul>
+</nav>
+
+<main>
+<section id="sobre">
+<h2>Sobre o projeto</h2>
+<p>
+A Loja Vórtex Geek é uma vitrine digital para quem coleciona quadrinhos,
+board games, mangás e itens de cultura pop: aqui o cliente confere os
+lançamentos da semana, monta o carrinho com o total calculado
+automaticamente e escolhe entre retirar na loja ou receber em casa,
+tudo em um só lugar.
+</p>
+</section>
+
+<section id="lancamentos">
+<h2>Lançamentos da semana</h2>
+<p>
+Catálogo com os itens em destaque e seus valores. Por enquanto
+a lista é fixa; futuramente pode vir do backend.
+</p>
+
+<!--
+Ciclo 9 (cards): cada item vira um <li class="card"> com a foto, o nome,
+uma linha de descrição e o preço. A grade (2 ou 3 colunas, conforme a tela)
+é desenhada pela seção 13 do estilo.css — o HTML só diz O QUE há no card.
+As fotos são ilustrações provisórias em frontend/img/produto-*.svg; para
+trocar por fotos reais, basta substituir o arquivo com o mesmo nome.
+-->
+<ul id="lista-lancamentos" class="cards">
+<li class="card">
+<img src="img/produto-miniatura.svg" alt="Miniatura colecionável de 12 cm, um guerreiro com espada" width="400" height="300" loading="lazy">
+<div class="card-corpo">
+<h3 class="produto">Miniatura colecionável 12cm</h3>
+<p class="card-descricao">Figura de 12 cm para a vitrine ou a estante.</p>
+<p class="preco">R$ 89,90</p>
+</div>
+</li>
+<li class="card">
+<img src="img/produto-manga.svg" alt="Capa do mangá volume 1, edição especial" width="400" height="300" loading="lazy">
+<div class="card-corpo">
+<h3 class="produto">Mangá volume 1 — edição especial</h3>
+<p class="card-descricao">Primeiro volume em edição especial.</p>
+<p class="preco">R$ 34,90</p>
+</div>
+</li>
+<li class="card">
+<img src="img/produto-board-game.svg" alt="Caixa do board game de estratégia, para 2 a 4 jogadores" width="400" height="300" loading="lazy">
+<div class="card-corpo">
+<h3 class="produto">Board game de estratégia (2 a 4 jogadores)</h3>
+<p class="card-descricao">Partidas de estratégia para 2 a 4 pessoas.</p>
+<p class="preco">R$ 159,00</p>
+</div>
+</li>
+<li class="card">
+<img src="img/produto-camiseta.svg" alt="Camiseta geek roxa com estampa de estrela num círculo amarelo" width="400" height="300" loading="lazy">
+<div class="card-corpo">
+<h3 class="produto">Camiseta geek estampada</h3>
+<p class="card-descricao">Camiseta com estampa geek na frente.</p>
+<p class="preco">R$ 59,90</p>
+</div>
+</li>
+<li class="card">
+<img src="img/produto-cartas.svg" alt="Três cartas colecionáveis empilhadas em leque" width="400" height="300" loading="lazy">
+<div class="card-corpo">
+<h3 class="produto">Deck de cartas colecionáveis</h3>
+<p class="card-descricao">Deck pronto para jogar ou colecionar.</p>
+<p class="preco">R$ 24,90</p>
+</div>
+</li>
+<li class="card">
+<img src="img/produto-caneca.svg" alt="Caneca roxa de 350 ml com faixa amarela" width="400" height="300" loading="lazy">
+<div class="card-corpo">
+<h3 class="produto">Caneca temática 350ml</h3>
+<p class="card-descricao">Caneca de 350 ml com tema geek.</p>
+<p class="preco">R$ 39,90</p>
+</div>
+</li>
+</ul>
+
+<!--
+O carrinho de compras (somar preços, listar itens escolhidos) ainda não
+foi construído — é comportamento mais complexo que fica para o ciclo 7.
+O ciclo 6 trouxe as primeiras três peças de JavaScript do projeto: a
+saudação do cabeçalho, o botão de tema e o contador da mensagem de
+contato, todas em js/script.js.
+-->
+</section>
+
+<section id="carrinho">
+<h2>Monte seu carrinho</h2>
+<p>
+Ferramenta para o cliente escolher os itens do catálogo acima e
+acompanhar o total da compra em tempo real.
+</p>
+
+<ul id="itens-selecionados">
+<li>Nenhum item adicionado ainda.</li>
+</ul>
+
+<p id="total-compra">Total: R$ 0,00</p>
+
+<!--
+O cálculo do total (somar/remover itens, atualizar o valor em
+#total-compra) ainda não foi construído — fica para o ciclo 7,
+junto com a validação dos formulários. A estrutura HTML já fica
+pronta para não precisar mexer depois.
+-->
+</section>
+
+<section id="retirada">
+<h2>Retirada ou entrega</h2>
+<p>Preencha os dados abaixo para retirar na loja ou receber em casa.</p>
+
+<form id="form-entrega" action="../backend/processa-pedido.php" method="post">
+<div>
+<label for="nome-cliente">Nome completo</label>
+<input type="text" id="nome-cliente" name="nome-cliente" maxlength="60" required>
+</div>
+
+<div>
+<label for="endereco-entrega">Endereço de entrega</label>
+<input type="text" id="endereco-entrega" name="endereco-entrega" maxlength="150" required>
+</div>
+
+<div>
+<label for="telefone-cliente">Telefone</label>
+<input type="tel" id="telefone-cliente" name="telefone-cliente" maxlength="20" required>
+</div>
+
+<div>
+<label for="forma-pagamento">Forma de pagamento</label>
+<select id="forma-pagamento" name="forma-pagamento">
+<option value="pix">Pix</option>
+<option value="cartao">Cartão na entrega</option>
+<option value="dinheiro">Dinheiro</option>
+</select>
+</div>
+
+<button type="submit">Confirmar pedido</button>
+
+<!--
+O parágrafo nasce VAZIO: quem escreve nele é a function conferirEntrega,
+do js/script.js, a cada clique em Confirmar pedido. aria-live="polite"
+faz o leitor de tela ler o aviso assim que ele muda.
+-->
+<p id="aviso-entrega" class="aviso" aria-live="polite"></p>
+</form>
+
+<!--
+Aula 09. O formulário ENVIA de verdade: o action aponta para o PHP do
+backend/ (os dois pontos sobem uma pasta, saindo do frontend/), e o PHP
+grava o pedido na tabela pedidos do banco. Quem dá nome a cada dado é o
+atributo name: name="nome-cliente" vira $_POST["nome-cliente"].
+
+ESTA PÁGINA É ABERTA PELO SERVIDOR, e não pelo Live Server:
+  http://localhost/<pasta-do-projeto>/frontend/
+O Live Server só entrega arquivos; quem executa o PHP é o Apache do XAMPP.
+-->
+</section>
+
+<section id="contato">
+<h2>Contato</h2>
+<p>Dúvidas, sugestões ou reclamações? Fale com a gente.</p>
+
+<form id="form-contato" action="../backend/processa-contato.php" method="post">
+<div>
+<label for="nome-contato">Nome</label>
+<input type="text" id="nome-contato" name="nome-contato" maxlength="60" required>
+</div>
+
+<div>
+<label for="email-contato">E-mail</label>
+<input type="email" id="email-contato" name="email-contato" maxlength="120" required>
+</div>
+
+<div>
+<label for="mensagem-contato">Mensagem</label>
+<textarea id="mensagem-contato" name="mensagem-contato" rows="4" maxlength="500" required></textarea>
+
+<!--
+Ciclo 6: o número some se o JavaScript não rodar — maxlength="500" já
+protege o campo sozinho, pelo próprio navegador. O parágrafo só AVISA
+quanto ainda cabe; quem impede passar de 500 é o atributo, não o script.
+-->
+<p id="contador-mensagem" class="contador">Até 500 caracteres</p>
+</div>
+
+<button type="submit">Enviar mensagem</button>
+
+<!-- O mesmo parágrafo vazio de cima: a function conferirContato escreve nele. -->
+<p id="aviso-contato" class="aviso" aria-live="polite"></p>
+</form>
+
+<!--
+Aula 09. Mesma ideia do formulário de cima: o action aponta para o
+backend/processa-contato.php, que grava a mensagem na tabela mensagens.
+Os maxlength (60 e 120) são os tamanhos das colunas nome e email no
+backend/sql/banco.sql.
+-->
+</section>
+</main>
+
+<footer>
+<p>Equipe Vinland &middot; 2026 &middot; ARA0062 &middot; Newton Paiva</p>
+</footer>
+
+<!--
+Ciclo 6: js/script.js deixou de estar vazio. defer faz o navegador ler
+o HTML inteiro antes de rodar o script — por isso #saudacao, #botao-tema
+e #contador-mensagem já existem quando o arquivo procura por eles.
+-->
+<script src="js/script.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-labelledby="t">
+  <title id="t">Caneca temática de 350 ml</title>
+  <rect width="400" height="300" fill="#f3e6ff"/>
+  <circle cx="200" cy="150" r="120" fill="#e6d3f5"/>
+  <ellipse cx="190" cy="242" rx="92" ry="10" fill="#241536" opacity="0.15"/>
+  <!-- alça -->
+  <path d="M255,112 Q310,112 310,162 Q310,212 255,212" fill="none" stroke="#3d1c5e" stroke-width="16"/>
+  <!-- corpo -->
+  <rect x="125" y="85" width="130" height="150" rx="10" fill="#5b2a86"/>
+  <ellipse cx="190" cy="85" rx="65" ry="12" fill="#3d1c5e"/>
+  <!-- faixa e textos -->
+  <rect x="125" y="150" width="130" height="24" fill="#ffb400"/>
+  <text x="190" y="167" text-anchor="middle" font-family="Poppins, Arial, sans-serif" font-size="13" font-weight="700" fill="#241536">350 ml</text>
+  <!-- vórtex no corpo -->
+  <circle cx="190" cy="118" r="14" fill="none" stroke="#5ee6d0" stroke-width="4" stroke-dasharray="60 30" stroke-linecap="round"/>
+  <circle cx="190" cy="118" r="4" fill="#ffb400"/>
+  <text x="190" y="206" text-anchor="middle" font-family="Poppins, Arial, sans-serif" font-size="12" font-weight="600" letter-spacing="2" fill="#e6d9f2">VÓRTEX</text>
+</svg>
