@@ -197,7 +197,8 @@ lista. Ficam para as próximas aulas.
 - [x] Ciclo 3 — `frontend/`: página com listas, tabela e formulário de contato
 - [x] Ciclos 4 e 5 — `frontend/css/`: identidade visual, layout e responsividade
 - [x] Ciclos 6 e 7 — `frontend/js/`: interação e validação dos formulários
-- [ ] Ciclos 6 e 7 — `frontend/js/`: dados via JSON e carrinho de compras (ainda não feito)
+- [x] Ciclos 6 e 7 — `frontend/js/`: carrinho de compras (botão em cada card, quantidade, remover e total)
+- [ ] Ciclos 6 e 7 — `frontend/js/`: dados via JSON (ainda não feito)
 - [x] Ciclo 9 — `backend/`: os dois formulários gravam no banco e as listas mostram o que foi gravado
 - [x] Ciclo 9 — `frontend/`: lançamentos da semana em cards, com ilustrações provisórias
 - [ ] `frontend/img/`: trocar as ilustrações por fotos reais dos produtos
