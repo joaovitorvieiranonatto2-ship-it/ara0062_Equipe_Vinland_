@@ -124,12 +124,22 @@ um é um **card** com imagem, nome, descrição e preço.
   usar fotos reais, basta colocar o arquivo com o mesmo nome em `frontend/img/`
   (ou trocar a extensão no `src` do `index.html`).
 
-## Como abrir o projeto
+## Como rodar no XAMPP
 
-1. Baixe ou clone o repositório.
-2. Abra a pasta no VS Code (*Arquivo → Abrir Pasta* — a pasta do projeto
-   inteira, com `frontend/` e `backend/` dentro).
-3. Abra `frontend/index.html` e clique em **Go Live** (extensão Live Server).
+A página **precisa do servidor**: os formulários enviam para arquivos PHP, e
+quem executa PHP é o Apache. Com o Live Server ou com dois cliques no
+`index.html`, a página aparece, mas o envio não funciona.
+
+1. Ponha a pasta do projeto em `C:\xampp\htdocs`.
+2. No painel do XAMPP, clique em **Start** no Apache **e** no MySQL.
+3. Abra `http://localhost/phpmyadmin`, vá na aba **SQL**, cole o conteúdo de
+   `backend/sql/banco.sql` e clique em **Executar**. Faça isso uma vez por
+   computador: o script cria o banco `vortex_geek` e as tabelas `pedidos` e
+   `mensagens`.
+4. Abra `http://localhost/<pasta-do-projeto>/frontend/` e envie um pedido ou
+   uma mensagem.
+5. Veja o que foi gravado em `http://localhost/<pasta-do-projeto>/backend/pedidos.php`
+   e `http://localhost/<pasta-do-projeto>/backend/mensagens.php`.
 
 Como o `index.html` está dentro de `frontend/`, os caminhos dele ficam assim:
 
@@ -180,21 +190,6 @@ injection. Grava-se o texto original; a proteção da página (`htmlspecialchars
 **O que o PHP ainda não faz:** conferir os dados de novo no servidor (só o
 JavaScript confere, e ele pode ser desligado) e pedir senha nas páginas de
 lista. Ficam para as próximas aulas.
-
-## Como abrir (ciclo 9)
-
-A página **precisa do servidor**: os formulários enviam para arquivos PHP, e
-quem executa PHP é o Apache. Com o Live Server ou com dois cliques no
-`index.html`, a página aparece, mas o envio não funciona.
-
-1. Ponha a pasta do projeto em `C:\xampp\htdocs`.
-2. No painel do XAMPP, **Start** no Apache **e** no MySQL.
-3. `http://localhost/phpmyadmin` → aba **SQL** → cole o conteúdo de
-   `backend/sql/banco.sql` → **Executar**. Só uma vez por computador: ele cria o
-   banco e as duas tabelas.
-4. Abra `http://localhost/<pasta-do-projeto>/frontend/` e envie um pedido.
-5. A resposta termina em *Pedido nº … guardado*. A lista:
-   `http://localhost/<pasta-do-projeto>/backend/pedidos.php`.
 
 ## Andamento por ciclo
 
