@@ -1,0 +1,44 @@
+[
+  {
+    "nome": "Miniatura colecionável 12cm",
+    "descricao": "Figura de 12 cm para a vitrine ou a estante.",
+    "preco": 89.9,
+    "imagem": "img/produto-miniatura.svg",
+    "alt": "Miniatura colecionável de 12 cm, um guerreiro com espada"
+  },
+  {
+    "nome": "Mangá volume 1 — edição especial",
+    "descricao": "Primeiro volume em edição especial.",
+    "preco": 34.9,
+    "imagem": "img/produto-manga.svg",
+    "alt": "Capa do mangá volume 1, edição especial"
+  },
+  {
+    "nome": "Board game de estratégia (2 a 4 jogadores)",
+    "descricao": "Partidas de estratégia para 2 a 4 pessoas.",
+    "preco": 159.0,
+    "imagem": "img/produto-board-game.svg",
+    "alt": "Caixa do board game de estratégia, para 2 a 4 jogadores"
+  },
+  {
+    "nome": "Camiseta geek estampada",
+    "descricao": "Camiseta com estampa geek na frente.",
+    "preco": 59.9,
+    "imagem": "img/produto-camiseta.svg",
+    "alt": "Camiseta geek roxa com estampa de estrela num círculo amarelo"
+  },
+  {
+    "nome": "Deck de cartas colecionáveis",
+    "descricao": "Deck pronto para jogar ou colecionar.",
+    "preco": 24.9,
+    "imagem": "img/produto-cartas.svg",
+    "alt": "Três cartas colecionáveis empilhadas em leque"
+  },
+  {
+    "nome": "Caneca temática 350ml",
+    "descricao": "Caneca de 350 ml com tema geek.",
+    "preco": 39.9,
+    "imagem": "img/produto-caneca.svg",
+    "alt": "Caneca roxa de 350 ml com faixa amarela"
+  }
+]

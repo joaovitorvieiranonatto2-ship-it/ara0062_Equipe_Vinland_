@@ -266,18 +266,14 @@ formEntrega.addEventListener("submit", conferirEntrega);
 // ---------------------------------------------------------------------------
 // 7. O CARRINHO
 //
-// Cada card tem um botão "Adicionar ao carrinho". O nome vem do .produto e
-// o preço do .preco ("R$ 89,90"). O preço vira CENTAVOS (8990) para somar
-// sem erro de vírgula flutuante, e só volta a ser "R$ 89,90" na tela.
+// Cada card tem um botão "Adicionar ao carrinho" (criado em criarCard, seção 8).
+// O preço do JSON (89.9) vira CENTAVOS (8990) para somar sem erro de vírgula
+// flutuante, e só volta a ser "R$ 89,90" na tela.
 // O texto entra com textContent, nunca innerHTML.
 // ---------------------------------------------------------------------------
 const listaCarrinho = document.querySelector("#itens-selecionados");
 const totalCompra = document.querySelector("#total-compra");
 const carrinho = [];   // cada item: { nome, centavos, quantidade }
-
-function precoEmCentavos(texto) {
-  return Math.round(parseFloat(texto.replace("R$", "").replace(/\./g, "").replace(",", ".")) * 100);
-}
 
 function formatarReais(centavos) {
   return "R$ " + (centavos / 100).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -316,16 +312,77 @@ function desenharCarrinho() {
   totalCompra.textContent = "Total: " + formatarReais(total);
 }
 
-document.querySelectorAll("#lista-lancamentos .card").forEach(function (card) {
-  card.querySelector(".adicionar").addEventListener("click", function () {
-    const nome = card.querySelector(".produto").textContent.trim();
-    const centavos = precoEmCentavos(card.querySelector(".preco").textContent);
-    const existente = carrinho.find(function (item) { return item.nome === nome; });
+function criarCard(produto) {
+  const card = document.createElement("li");
+  card.className = "card";
+
+  const imagem = document.createElement("img");
+  imagem.src = produto.imagem;
+  imagem.alt = produto.alt;
+  imagem.width = 400;
+  imagem.height = 300;
+  imagem.loading = "lazy";
+
+  const corpo = document.createElement("div");
+  corpo.className = "card-corpo";
+
+  const titulo = document.createElement("h3");
+  titulo.className = "produto";
+  titulo.textContent = produto.nome;
+
+  const descricao = document.createElement("p");
+  descricao.className = "card-descricao";
+  descricao.textContent = produto.descricao;
+
+  const preco = document.createElement("p");
+  preco.className = "preco";
+  preco.textContent = formatarReais(Math.round(produto.preco * 100));
+
+  const botao = document.createElement("button");
+  botao.type = "button";
+  botao.className = "adicionar";
+  botao.textContent = "Adicionar ao carrinho";
+  botao.addEventListener("click", function () {
+    const centavos = Math.round(produto.preco * 100);
+    const existente = carrinho.find(function (item) { return item.nome === produto.nome; });
     if (existente) {
       existente.quantidade++;
     } else {
-      carrinho.push({ nome: nome, centavos: centavos, quantidade: 1 });
+      carrinho.push({ nome: produto.nome, centavos: centavos, quantidade: 1 });
     }
     desenharCarrinho();
   });
-});
+
+  corpo.append(titulo, descricao, preco, botao);
+  card.append(imagem, corpo);
+  return card;
+}
+
+
+// ---------------------------------------------------------------------------
+// 8. OS PRODUTOS EM JSON
+//
+// fetch("data/produtos.json") pede o arquivo ao servidor e devolve uma
+// Promise; .json() transforma o texto em um array de objetos. Para cada
+// objeto, criarCard monta o <li class="card"> e o botão do carrinho.
+// Se o arquivo não carregar (página aberta sem servidor, JSON quebrado),
+// o aviso aparece abaixo da lista e o resto da página continua funcionando.
+// ---------------------------------------------------------------------------
+const listaProdutos = document.querySelector("#lista-lancamentos");
+const avisoProdutos = document.querySelector("#aviso-produtos");
+
+fetch("data/produtos.json")
+  .then(function (resposta) {
+    if (!resposta.ok) {
+      throw new Error("HTTP " + resposta.status);
+    }
+    return resposta.json();
+  })
+  .then(function (produtos) {
+    produtos.forEach(function (produto) {
+      listaProdutos.appendChild(criarCard(produto));
+    });
+  })
+  .catch(function () {
+    avisoProdutos.textContent = "Não foi possível carregar os produtos. Abra a página pelo servidor (XAMPP).";
+  });

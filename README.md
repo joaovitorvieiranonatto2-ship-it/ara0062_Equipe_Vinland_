@@ -86,7 +86,9 @@ no servidor (PHP).
 │   │   ├─ estilo.css      tema claro do site
 │   │   └─ tema-noite.css  tema escuro do site
 │   ├─ js/
-│   │   └─ script.js       saudação, tema, contador e validação dos formulários
+│   │   └─ script.js       saudação, tema, contador, validação, carrinho e cards
+│   ├─ data/
+│   │   └─ produtos.json   os produtos dos lançamentos (nome, descrição, preço, imagem)
 │   └─ img/
 │       ├─ logo_branca.png logo do tema claro
 │       ├─ logo_preta.png  logo do tema escuro
@@ -112,9 +114,14 @@ A partir do ciclo 9 os arquivos `.php` deixam de ser só um comentário: o
 Os itens da seção *Lançamentos da semana* deixaram de ser texto corrido: cada
 um é um **card** com imagem, nome, descrição e preço.
 
-- **HTML:** `<ul id="lista-lancamentos" class="cards">`, com um
-  `<li class="card">` por item (`<img>`, `<h3 class="produto">`,
-  `<p class="card-descricao">` e `<p class="preco">`).
+- **JSON:** `frontend/data/produtos.json` guarda cada produto (`nome`,
+  `descricao`, `preco`, `imagem` e `alt`). Para incluir ou mudar um produto,
+  edite só esse arquivo.
+- **JavaScript:** o `script.js` lê o JSON com `fetch` e monta um
+  `<li class="card">` por produto dentro de `<ul id="lista-lancamentos">`
+  (`<img>`, `<h3 class="produto">`, `<p class="card-descricao">`,
+  `<p class="preco">` e o botão do carrinho). Por isso a página precisa ser
+  aberta pelo servidor (XAMPP).
 - **CSS:** seção 13 do `estilo.css`. Uma grade (`display: grid` com
   `repeat(auto-fill, minmax(220px, 1fr))`) dá três colunas em tela larga e uma
   no celular. Só usa as variáveis do `:root`, então o tema escuro funciona sem
@@ -196,7 +203,7 @@ injection. Grava-se o texto original; a proteção da página (`htmlspecialchars
 - [x] Ciclos 4 e 5 — `frontend/css/`: identidade visual, layout e responsividade
 - [x] Ciclos 6 e 7 — `frontend/js/`: interação e validação dos formulários
 - [x] Ciclos 6 e 7 — `frontend/js/`: carrinho de compras (botão em cada card, quantidade, remover e total)
-- [ ] Ciclos 6 e 7 — `frontend/js/`: dados via JSON (ainda não feito)
+- [x] Ciclos 6 e 7 — `frontend/js/`: produtos em JSON (`frontend/data/produtos.json`), com os cards montados pelo `script.js`
 - [x] Ciclo 9 — `backend/`: os dois formulários gravam no banco e as listas mostram o que foi gravado
 - [x] Ciclo 9 — `frontend/`: lançamentos da semana em cards, com ilustrações provisórias
 - [x] Ciclo 10 — `backend/`: conferir os dados também no servidor
