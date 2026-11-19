@@ -76,6 +76,19 @@ if ($nome === "") {
     exit("Nada chegou do formulário. Envie pela página: ../frontend/index.html");
 }
 
+/* Conferência no servidor (o JavaScript pode ser desligado). Os tamanhos
+   são os das colunas do banco.sql. */
+$nome     = trim($nome);
+$endereco = trim($endereco);
+$telefone = trim($telefone);
+if (mb_strlen($nome) < 3 || mb_strlen($nome) > 60
+    || mb_strlen($endereco) < 5 || mb_strlen($endereco) > 150
+    || strlen(preg_replace("/\D/", "", $telefone)) < 10
+    || strlen(preg_replace("/\D/", "", $telefone)) > 11
+    || mb_strlen($telefone) > 20) {
+    exit("Dados inválidos. Envie pela página: ../frontend/index.html");
+}
+
 /* A forma de pagamento só pode ser um dos três values do <select>. */
 if (!in_array($pagamento, ["pix", "cartao", "dinheiro"], true)) {
     exit("Forma de pagamento inválida. Envie pela página: ../frontend/index.html");

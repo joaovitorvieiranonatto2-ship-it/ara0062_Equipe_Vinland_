@@ -187,9 +187,7 @@ apóstrofo de *Joana D'Arc* não quebra o comando e não abre espaço para SQL
 injection. Grava-se o texto original; a proteção da página (`htmlspecialchars`)
 é feita na hora de **mostrar**.
 
-**O que o PHP ainda não faz:** conferir os dados de novo no servidor (só o
-JavaScript confere, e ele pode ser desligado) e pedir senha nas páginas de
-lista. Ficam para as próximas aulas.
+**O que o PHP ainda não faz:** pedir senha nas páginas de lista. O servidor já confere os dados de novo (tamanhos, e-mail e forma de pagamento), porque o JavaScript pode ser desligado.
 
 ## Andamento por ciclo
 
@@ -202,7 +200,7 @@ lista. Ficam para as próximas aulas.
 - [x] Ciclo 9 — `backend/`: os dois formulários gravam no banco e as listas mostram o que foi gravado
 - [x] Ciclo 9 — `frontend/`: lançamentos da semana em cards, com ilustrações provisórias
 - [ ] `frontend/img/`: trocar as ilustrações por fotos reais dos produtos
-- [ ] Ciclo 10 — `backend/`: conferir os dados também no servidor
+- [x] Ciclo 10 — `backend/`: conferir os dados também no servidor
 
 ## Quem fez o quê
 

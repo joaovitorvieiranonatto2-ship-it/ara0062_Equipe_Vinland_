@@ -141,11 +141,8 @@ trocar por fotos reais, basta substituir o arquivo com o mesmo nome.
 </ul>
 
 <!--
-O carrinho de compras (somar preços, listar itens escolhidos) ainda não
-foi construído — é comportamento mais complexo que fica para o ciclo 7.
-O ciclo 6 trouxe as primeiras três peças de JavaScript do projeto: a
-saudação do cabeçalho, o botão de tema e o contador da mensagem de
-contato, todas em js/script.js.
+Cada card tem um botão "Adicionar ao carrinho". Quem trata o clique é o
+js/script.js (seção 7), que lê o nome em .produto e o preço em .preco.
 -->
 </section>
 
@@ -163,10 +160,8 @@ acompanhar o total da compra em tempo real.
 <p id="total-compra">Total: R$ 0,00</p>
 
 <!--
-O cálculo do total (somar/remover itens, atualizar o valor em
-#total-compra) ainda não foi construído — fica para o ciclo 7,
-junto com a validação dos formulários. A estrutura HTML já fica
-pronta para não precisar mexer depois.
+O js/script.js (seção 7) reescreve a lista #itens-selecionados e o
+#total-compra a cada clique em "Adicionar ao carrinho" ou "Remover".
 -->
 </section>
 

@@ -75,6 +75,18 @@ if ($nome === "") {
     exit("Nada chegou do formulário. Envie pela página: ../frontend/index.html");
 }
 
+/* Conferência no servidor (o JavaScript pode ser desligado). Os tamanhos
+   são os das colunas do banco.sql. */
+$nome     = trim($nome);
+$email    = trim($email);
+$mensagem = trim($mensagem);
+if (mb_strlen($nome) < 3 || mb_strlen($nome) > 60
+    || mb_strlen($email) > 120 || !filter_var($email, FILTER_VALIDATE_EMAIL)
+    || mb_strlen($mensagem) < 10
+    || mb_strlen(str_replace("\r\n", "\n", $mensagem)) > 500) {   /* o navegador manda quebra de linha como \r\n e conta como 1 no maxlength */
+    exit("Dados inválidos. Envie pela página: ../frontend/index.html");
+}
+
 /* require traz para cá o que está em config/conexao.php — a partir desta
    linha, a variável $conexao existe. */
 require "config/conexao.php";
