@@ -261,3 +261,71 @@ function conferirEntrega(evento) {
 }
 
 formEntrega.addEventListener("submit", conferirEntrega);
+
+
+// ---------------------------------------------------------------------------
+// 7. O CARRINHO
+//
+// Cada card tem um botão "Adicionar ao carrinho". O nome vem do .produto e
+// o preço do .preco ("R$ 89,90"). O preço vira CENTAVOS (8990) para somar
+// sem erro de vírgula flutuante, e só volta a ser "R$ 89,90" na tela.
+// O texto entra com textContent, nunca innerHTML.
+// ---------------------------------------------------------------------------
+const listaCarrinho = document.querySelector("#itens-selecionados");
+const totalCompra = document.querySelector("#total-compra");
+const carrinho = [];   // cada item: { nome, centavos, quantidade }
+
+function precoEmCentavos(texto) {
+  return Math.round(parseFloat(texto.replace("R$", "").replace(/\./g, "").replace(",", ".")) * 100);
+}
+
+function formatarReais(centavos) {
+  return "R$ " + (centavos / 100).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function desenharCarrinho() {
+  listaCarrinho.textContent = "";
+  let total = 0;
+
+  if (carrinho.length === 0) {
+    const vazio = document.createElement("li");
+    vazio.textContent = "Nenhum item adicionado ainda.";
+    listaCarrinho.appendChild(vazio);
+  }
+
+  carrinho.forEach(function (item, posicao) {
+    total += item.centavos * item.quantidade;
+    const linha = document.createElement("li");
+    linha.textContent = `${item.nome} — ${item.quantidade} x ${formatarReais(item.centavos)} `;
+    const remover = document.createElement("button");
+    remover.type = "button";
+    remover.className = "remover";
+    remover.textContent = "Remover";
+    remover.addEventListener("click", function () {
+      if (item.quantidade > 1) {
+        item.quantidade--;
+      } else {
+        carrinho.splice(posicao, 1);
+      }
+      desenharCarrinho();
+    });
+    linha.appendChild(remover);
+    listaCarrinho.appendChild(linha);
+  });
+
+  totalCompra.textContent = "Total: " + formatarReais(total);
+}
+
+document.querySelectorAll("#lista-lancamentos .card").forEach(function (card) {
+  card.querySelector(".adicionar").addEventListener("click", function () {
+    const nome = card.querySelector(".produto").textContent.trim();
+    const centavos = precoEmCentavos(card.querySelector(".preco").textContent);
+    const existente = carrinho.find(function (item) { return item.nome === nome; });
+    if (existente) {
+      existente.quantidade++;
+    } else {
+      carrinho.push({ nome: nome, centavos: centavos, quantidade: 1 });
+    }
+    desenharCarrinho();
+  });
+});

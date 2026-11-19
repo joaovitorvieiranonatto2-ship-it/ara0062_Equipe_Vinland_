@@ -76,6 +76,11 @@ if ($nome === "") {
     exit("Nada chegou do formulário. Envie pela página: ../frontend/index.html");
 }
 
+/* A forma de pagamento só pode ser um dos três values do <select>. */
+if (!in_array($pagamento, ["pix", "cartao", "dinheiro"], true)) {
+    exit("Forma de pagamento inválida. Envie pela página: ../frontend/index.html");
+}
+
 /* require traz para cá o que está em config/conexao.php — a partir desta
    linha, a variável $conexao existe. */
 require "config/conexao.php";
