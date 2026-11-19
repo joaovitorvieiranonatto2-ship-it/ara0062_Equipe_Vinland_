@@ -199,7 +199,6 @@ injection. Grava-se o texto original; a proteção da página (`htmlspecialchars
 - [ ] Ciclos 6 e 7 — `frontend/js/`: dados via JSON (ainda não feito)
 - [x] Ciclo 9 — `backend/`: os dois formulários gravam no banco e as listas mostram o que foi gravado
 - [x] Ciclo 9 — `frontend/`: lançamentos da semana em cards, com ilustrações provisórias
-- [ ] `frontend/img/`: trocar as ilustrações por fotos reais dos produtos
 - [x] Ciclo 10 — `backend/`: conferir os dados também no servidor
 
 ## Quem fez o quê
