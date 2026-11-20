@@ -208,14 +208,14 @@ injection. Grava-se o texto original; a proteção da página (`htmlspecialchars
 - [x] Ciclo 9 — `frontend/`: lançamentos da semana em cards, com ilustrações provisórias
 - [x] Ciclo 10 — `backend/`: conferir os dados também no servidor
 
-## Quem fez o quê
+## Quem fez o quê na 1° entrega
 
 | Integrante | Parte da folha de estilo |
 |---|---|
 | Bernardo Augusto Gontijo Dias | Estiliza cabeçalho, rodapé e cor padrão dos links |
 | Henrique Toffalini | Cabeçalho e variáveis CSS |
 | Juliano Morais | Define estilos base (reset, body e títulos) |
-| João Vítor Vieira Nonato | Estiliza o layout base das sections e a lista de lançamentos |
+| João Vítor Vieira Nonato | Cuidou do tema escuro do site |
 | Isaías Daniel de Oliveira Lopes | Estiliza os formulários |
 
 ## Quem fez o quê — ciclo 9
@@ -225,8 +225,8 @@ GitHub (é o commit que mostra a sua participação).
 
 | Integrante | Parte |
 |---|---|
-| Henrique Toffalini | o `banco.sql` (o banco e as tabelas `pedidos` e `mensagens`); o `conexao.php` e o `teste-conexao.php` |
-| Juliano Morais | o `INSERT` com `prepare` e `execute` nos dois `processa-*.php`; as páginas `pedidos.php` e `mensagens.php`, com o `foreach` |
-| Bernardo Augusto Gontijo Dias | o número do pedido na página de resposta e o `aviso` no CSS; as ilustrações dos produtos (`frontend/img/produto-*.svg`) |
-| Isaías Daniel de Oliveira Lopes | a validação dos formulários no `script.js` e os testes no phpMyAdmin |
-| João Vítor Vieira Nonato | os cards da lista de lançamentos (`index.html` e seção 13 do `estilo.css`); a organização do repositório (pastas e README) |
+| Henrique Toffalini |`pedidos.php`, `mensagens.php` (listas do banco)|
+| Juliano Morais |  `processa-contato.php` (grava a mensagem com `prepare`). |
+| Bernardo Augusto Gontijo Dias | `processa-pedido.php` (grava o pedido e mostra o número com `lastInsertId`), classe `.aviso` do CSS e ilustrações SVG.|
+| Isaías Daniel de Oliveira Lopes | `script.js` (validação, carrinho e JSON).|
+| João Vítor Vieira Nonato |  `banco.sql` e `conexao.php` (banco e conexão PDO). |
