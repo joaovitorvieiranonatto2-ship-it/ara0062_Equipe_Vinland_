@@ -1,3 +1,4 @@
+/* Feito pelo Bernardo */
 <?php
 /* ===========================================================================
    ARA0062 — recebe o formulário de retirada ou entrega do frontend
