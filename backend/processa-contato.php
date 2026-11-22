@@ -1,3 +1,4 @@
+/* Feito pelo Juliano */
 <?php
 /* ===========================================================================
    ARA0062 — recebe o formulário de contato do frontend
@@ -27,6 +28,7 @@
    servidor. Com o JavaScript desligado, o X Æ A-12 continua passando — e
    agora fica gravado.
    =========================================================================== */
+   /* comentario teste de comit no linux */
 
 
 /* ---------------------------------------------------------------------------
