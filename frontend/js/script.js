@@ -1,3 +1,4 @@
+/* Feito pelo iSAIAS *
 // ===========================================================================
 // ARA0062 — comportamento da página
 // Loja Vórtex Geek — Equipe Vinland — Ciclo 6
