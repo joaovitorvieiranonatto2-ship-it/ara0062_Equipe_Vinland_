@@ -7,8 +7,9 @@
      http://localhost/<pasta-do-projeto>/backend/pedidos.php
 
    Ordem do arquivo:
-     1. buscar no banco                                        (prática 6)
-     2. a página, em HTML, com uma linha da tabela por mensagem
+     1. funções auxiliares
+     2. buscar no banco                                        (prática 6)
+     3. a página, em HTML, com uma linha da tabela por pedido
 
    O que esta página AINDA NÃO faz: pedir senha. Qualquer pessoa que souber
    o endereço lê os pedidos — login é assunto de uma aula própria.
@@ -16,39 +17,54 @@
 
 
 /* ---------------------------------------------------------------------------
-   1. BUSCAR NO BANCO
+   1. FUNÇÕES AUXILIARES
 
-   Aqui não há nenhum valor digitado por alguém dentro do SQL: o comando é
-   sempre o mesmo. Por isso basta query(), que manda e executa de uma vez —
-   sem prepare e sem ?.
+   escapar(): tudo o que foi digitado por alguém passa por htmlspecialchars
+   antes de ir para a página — inclusive o que veio do banco, porque o banco
+   guarda o texto original.
 
-   fetchAll() traz TODAS as linhas da resposta, numa lista. Cada item da
-   lista é um pedido, e cada pedido tem gavetas com o nome das
-   colunas: $p["nome"], $p["endereco"]... — como o $_POST tem o name dos
-   campos.
-
-   ORDER BY id DESC: da mais nova para a mais antiga.
+   formatarData(): o banco entrega a data como 2026-10-22 19:42:10.
+   strtotime() a transforma num instante, e date() a escreve do jeito
+   brasileiro.
    --------------------------------------------------------------------------- */
-require "config/conexao.php";
+function escapar(string $texto): string
+{
+    return htmlspecialchars($texto);
+}
 
-$comando   = $conexao->query("SELECT * FROM pedidos ORDER BY id DESC");
-$pedidos = $comando->fetchAll();
-
-$total = count($pedidos);                     // quantos itens a lista tem
+function formatarData(string $dataDoBanco): string
+{
+    return date("d/m/Y H:i", strtotime($dataDoBanco));
+}
 
 
 /* ---------------------------------------------------------------------------
-   2. A PÁGINA
+   2. BUSCAR NO BANCO
 
-   foreach ($pedidos as $p): repete o trecho de HTML até o endforeach
-   UMA VEZ PARA CADA pedido da lista, e a cada volta $p é o pedido da
-   vez. É o for...of do JavaScript.
+   Não há nenhum valor digitado por alguém dentro do SQL: o comando é sempre
+   o mesmo. Por isso basta query(), sem prepare e sem ?.
 
-   Tudo o que foi digitado por alguém passa por htmlspecialchars antes do
-   echo — inclusive o que veio do banco: o banco guardou o texto original.
+   fetchAll() traz TODAS as linhas numa lista; cada item é um pedido com
+   gavetas com o nome das colunas: $p["nome"], $p["endereco"]... — como o
+   $_POST tem o name dos campos.
 
-   A data vem do banco no formato 2026-10-22 19:42:10. strtotime() a
-   transforma num instante, e date() a escreve do jeito brasileiro.
+   ORDER BY id DESC: do mais novo para o mais antigo.
+   --------------------------------------------------------------------------- */
+require "config/conexao.php";
+
+$pedidos = $conexao
+    ->query("SELECT * FROM pedidos ORDER BY id DESC")
+    ->fetchAll();
+
+$total = count($pedidos);
+
+
+/* ---------------------------------------------------------------------------
+   3. A PÁGINA
+
+   foreach ($pedidos as $p): repete o trecho de HTML até o endforeach UMA
+   VEZ PARA CADA pedido, e a cada volta $p é o pedido da vez. É o for...of
+   do JavaScript.
    --------------------------------------------------------------------------- */
 ?>
 <!DOCTYPE html>
@@ -78,7 +94,7 @@ $total = count($pedidos);                     // quantos itens a lista tem
       <section id="pedidos">
         <h2>Pedidos recebidos</h2>
 
-        <p class="aviso"><?php echo $total; ?> pedido(s) no banco.</p>
+        <p class="aviso"><?= $total ?> pedido(s) no banco.</p>
 
         <table>
           <thead>
@@ -94,12 +110,12 @@ $total = count($pedidos);                     // quantos itens a lista tem
           <tbody>
             <?php foreach ($pedidos as $p): ?>
             <tr>
-              <td><?php echo $p["id"]; ?></td>
-              <td><?php echo date("d/m/Y H:i", strtotime($p["criado_em"])); ?></td>
-              <td><?php echo htmlspecialchars($p["nome"]); ?></td>
-              <td><?php echo htmlspecialchars($p["endereco"]); ?></td>
-              <td><?php echo htmlspecialchars($p["telefone"]); ?></td>
-              <td><?php echo htmlspecialchars($p["pagamento"]); ?></td>
+              <td><?= (int) $p["id"] ?></td>
+              <td><?= formatarData($p["criado_em"]) ?></td>
+              <td><?= escapar($p["nome"]) ?></td>
+              <td><?= escapar($p["endereco"]) ?></td>
+              <td><?= escapar($p["telefone"]) ?></td>
+              <td><?= escapar($p["pagamento"]) ?></td>
             </tr>
             <?php endforeach; ?>
           </tbody>

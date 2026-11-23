@@ -7,8 +7,9 @@
      http://localhost/<pasta-do-projeto>/backend/mensagens.php
 
    Ordem do arquivo:
-     1. buscar no banco                                        (prática 6)
-     2. a página, em HTML, com uma linha da tabela por mensagem
+     1. funções auxiliares
+     2. buscar no banco                                        (prática 6)
+     3. a página, em HTML, com uma linha da tabela por mensagem
 
    O que esta página AINDA NÃO faz: pedir senha. Qualquer pessoa que souber
    o endereço lê as mensagens — login é assunto de uma aula própria.
@@ -16,39 +17,53 @@
 
 
 /* ---------------------------------------------------------------------------
-   1. BUSCAR NO BANCO
+   1. FUNÇÕES AUXILIARES
 
-   Aqui não há nenhum valor digitado por alguém dentro do SQL: o comando é
-   sempre o mesmo. Por isso basta query(), que manda e executa de uma vez —
-   sem prepare e sem ?.
+   escapar(): tudo o que foi digitado por alguém passa por htmlspecialchars
+   antes de ir para a página — inclusive o que veio do banco, porque o banco
+   guarda o texto original.
 
-   fetchAll() traz TODAS as linhas da resposta, numa lista. Cada item da
-   lista é uma mensagem, e cada mensagem tem gavetas com o nome das
-   colunas: $m["nome"], $m["email"]... — como o $_POST tem o name dos
-   campos.
+   formatarData(): o banco entrega a data como 2026-10-22 19:42:10.
+   strtotime() a transforma num instante, e date() a escreve do jeito
+   brasileiro.
+   --------------------------------------------------------------------------- */
+function escapar(string $texto): string
+{
+    return htmlspecialchars($texto);
+}
+
+function formatarData(string $dataDoBanco): string
+{
+    return date("d/m/Y H:i", strtotime($dataDoBanco));
+}
+
+
+/* ---------------------------------------------------------------------------
+   2. BUSCAR NO BANCO
+
+   Não há nenhum valor digitado por alguém dentro do SQL: o comando é sempre
+   o mesmo. Por isso basta query(), sem prepare e sem ?.
+
+   fetchAll() traz TODAS as linhas numa lista; cada item é uma mensagem com
+   gavetas com o nome das colunas: $m["nome"], $m["email"]...
 
    ORDER BY id DESC: da mais nova para a mais antiga.
    --------------------------------------------------------------------------- */
 require "config/conexao.php";
 
-$comando   = $conexao->query("SELECT * FROM mensagens ORDER BY id DESC");
-$mensagens = $comando->fetchAll();
+$mensagens = $conexao
+    ->query("SELECT * FROM mensagens ORDER BY id DESC")
+    ->fetchAll();
 
-$total = count($mensagens);                     // quantos itens a lista tem
+$total = count($mensagens);
 
 
 /* ---------------------------------------------------------------------------
-   2. A PÁGINA
+   3. A PÁGINA
 
-   foreach ($mensagens as $m): repete o trecho de HTML até o endforeach
-   UMA VEZ PARA CADA mensagem da lista, e a cada volta $m é a mensagem da
-   vez. É o for...of do JavaScript.
-
-   Tudo o que foi digitado por alguém passa por htmlspecialchars antes do
-   echo — inclusive o que veio do banco: o banco guardou o texto original.
-
-   A data vem do banco no formato 2026-10-22 19:42:10. strtotime() a
-   transforma num instante, e date() a escreve do jeito brasileiro.
+   foreach ($mensagens as $m): repete o trecho de HTML até o endforeach UMA
+   VEZ PARA CADA mensagem, e a cada volta $m é a mensagem da vez. É o
+   for...of do JavaScript.
    --------------------------------------------------------------------------- */
 ?>
 <!DOCTYPE html>
@@ -78,7 +93,7 @@ $total = count($mensagens);                     // quantos itens a lista tem
       <section id="mensagens">
         <h2>Mensagens recebidas</h2>
 
-        <p class="aviso"><?php echo $total; ?> mensagem(ns) no banco.</p>
+        <p class="aviso"><?= $total ?> mensagem(ns) no banco.</p>
 
         <table>
           <thead>
@@ -93,11 +108,11 @@ $total = count($mensagens);                     // quantos itens a lista tem
           <tbody>
             <?php foreach ($mensagens as $m): ?>
             <tr>
-              <td><?php echo $m["id"]; ?></td>
-              <td><?php echo date("d/m/Y H:i", strtotime($m["criada_em"])); ?></td>
-              <td><?php echo htmlspecialchars($m["nome"]); ?></td>
-              <td><?php echo htmlspecialchars($m["email"]); ?></td>
-              <td><?php echo htmlspecialchars($m["mensagem"]); ?></td>
+              <td><?= (int) $m["id"] ?></td>
+              <td><?= formatarData($m["criada_em"]) ?></td>
+              <td><?= escapar($m["nome"]) ?></td>
+              <td><?= escapar($m["email"]) ?></td>
+              <td><?= escapar($m["mensagem"]) ?></td>
             </tr>
             <?php endforeach; ?>
           </tbody>
